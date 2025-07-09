@@ -234,3 +234,80 @@ body {
   border-radius: 14px;     
   margin-top: 25px;       
 }
+
+
+/* =================================
+   ESTILOS DA PÁGINA DE SERVIÇOS
+   ================================= */
+
+/* Cabeçalho da página de serviços */
+.services-header {
+  background-color: #1c1917; /* Mesmo fundo escuro da home */
+  color: white;
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.services-header .section-title {
+  color: var(--primary-color);
+  margin-bottom: 10px;
+}
+
+.services-header .header-subtitle {
+  font-family: var(--font-main);
+  font-size: 18px;
+  color: var(--background-light);
+  margin-top: 0;
+  margin-bottom: 30px;
+}
+
+/* Lista que organiza os cards de serviço */
+.services-list {
+  display: grid;
+  grid-template-columns: 1fr; /* 1 coluna em telas pequenas */
+  gap: 25px; /* Espaçamento entre os cards */
+  margin-top: 30px;
+}
+
+/* Card individual de cada serviço */
+.service-card {
+  background-color: #fff;
+  border-radius: 14px;
+  padding: 25px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  text-align: left;
+  border-top: 5px solid var(--primary-color);
+  transition: transform 0.3s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-5px); /* Efeito de elevação ao passar o mouse */
+}
+
+.service-card h3 {
+  font-family: var(--font-title);
+  font-size: 22px;
+  color: var(--text-color);
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.service-card p {
+  margin-bottom: 15px;
+  line-height: 1.6;
+}
+
+.service-card .service-price {
+  font-family: var(--font-title);
+  font-size: 24px;
+  font-weight: bold;
+  color: var(--primary-color);
+  text-align: right;
+}
+
+/* Ajuste para telas maiores (desktop) */
+@media (min-width: 768px) {
+  .services-list {
+    grid-template-columns: 1fr 1fr; /* 2 colunas em telas maiores */
+  }
+}
