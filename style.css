@@ -90,7 +90,7 @@ body {
   font-family: var(--font-title);
   font-size: 40px;
   line-height: 48px;
-  margin-bottom: 25px;
+  margin-bottom: 30px;
 }
 
 .button-group {
@@ -112,6 +112,9 @@ body {
   letter-spacing: 1px;
   width: 100%;
   box-sizing: border-box;
+  margin-top: 20px;
+  display: inline-flex; /* Transforma o botão em um container flex */
+  align-items: center;  /* Alinha o ícone e o texto no centro verticalmente */
 }
 
 .btn-primary {
@@ -130,6 +133,12 @@ body {
   background-color: transparent;
   border-color: white;
   color: white;
+}
+
+/* Estilo para os ícones dentro dos botões */
+.btn i {
+  margin-right: 10px; /* Cria um espaço entre o ícone e o texto */
+  font-size: 20px;
 }
 
 /* Seção de Informações */
@@ -217,3 +226,11 @@ body {
   }
 }
 
+/* Estilos para o mapa incorporado */
+.map-responsive {
+  width: 90%;             /* Faz o mapa ocupar toda a largura da coluna */
+  height: 250px;         
+  border: none;            
+  border-radius: 14px;     
+  margin-top: 25px;       
+}
