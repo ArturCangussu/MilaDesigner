@@ -58,7 +58,7 @@ body {
     width: 100%;
     overflow: hidden;
     line-height: 0;
-    transform: scaleY(-1); /* Mantém a inversão para a forma ficar correta */
+    transform: scale(-1, -1); /* Mantém a inversão para a forma ficar correta */
 }
 
 /* Faz a onda ser maior que a tela horizontalmente pra não ter risco, já que overflow hidden vai cortar do mesmo jeito  */
@@ -184,7 +184,7 @@ body {
   }
 
   .hero-section {
-    padding: 200px 0;
+    padding: 225px 0;
     background-position: 100% top;
   }
 
