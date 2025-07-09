@@ -1,0 +1,233 @@
+/* Definição de variáveis e estilos globais */
+:root {
+  --text-color: #281a03; /* Cor similar a text-yellow-950 do Tailwind */
+  --primary-color: #D98DB1; /* Cor similar a bg-red-400 do Tailwind */
+  --background-light: #F1EFEA; /* Cor similar a bg-stone-50 do Tailwind */
+  --font-main: "Palanquin", sans-serif;
+  --font-title: "Philosopher", sans-serif;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-main);
+  color: var(--text-color);
+  background-color: #fff;
+  font-size: 15.5px;
+  line-height: 24.8px;
+  overflow-x: hidden;
+}
+
+/* Estilos do Container */
+.container {
+  width: 100%;
+  max-width: 1140px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 20px;
+  padding-right: 20px;
+  box-sizing: border-box;
+}
+
+/* Seção Hero (Banner Principal) */
+.hero-section {
+  position: relative;
+  padding: 150px 40px 80px 40px;
+  background-image: url("images/Camilamu.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  text-align: center;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #1c1917; /* stone-950 */
+  opacity: 0.65;
+}
+
+.hero-shape {
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  transform: scale(-1, -1);
+}
+
+.hero-shape img {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 25px;
+  width: calc(150% + 1.3px);
+}
+
+.hero-content {
+  position: relative; /* Para ficar acima do overlay */
+  z-index: 2;
+}
+
+.logo {
+  width: 175px; /* <<-- ADICIONE ESTA LINHA */
+  max-width: 100%; /* É bom manter esta linha por segurança */
+  height: auto; /* Deixe isso para a altura se ajustar automaticamente */
+  margin-bottom: 38px;
+}
+
+.main-title {
+  color: var(--primary-color);
+  font-family: var(--font-title);
+  font-size: 40px;
+  line-height: 48px;
+  margin-bottom: 20px;
+}
+
+.button-group {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+}
+
+/* Estilos de Botões */
+.btn {
+  display: inline-block;
+  padding: 17px 30px;
+  border-radius: 7px;
+  border: 2px solid transparent;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-weight: bold;
+  letter-spacing: 1px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  color: white;
+}
+
+.btn-secondary {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  color: white;
+}
+
+.btn-outline {
+  background-color: transparent;
+  border-color: white;
+  color: white;
+}
+
+/* Seção de Informações */
+.info-section {
+  padding: 10px;
+  background-color: var(--background-light);
+}
+
+.info-columns {
+  display: flex;
+  flex-direction: column;
+}
+
+.info-column {
+  width: 100%;
+  padding: 30px;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.section-title {
+  font-family: var(--font-title);
+  color: var(--primary-color);
+  font-size: 30px;
+  line-height: 39px;
+  margin-bottom: 20px;
+}
+
+.sub-title {
+  font-family: var(--font-title);
+  color: var(--primary-color);
+  font-size: 18.24px;
+  line-height: 27.36px;
+  margin-top: 50px;
+  margin-bottom: 10px;
+}
+
+/* Estilos para telas maiores (Desktop) - o que era `md:` */
+@media (min-width: 768px) {
+  body {
+    font-size: 17px;
+    line-height: 27.2px;
+  }
+
+  .hero-section {
+    padding: 225px 0;
+    background-position: 100% top;
+  }
+
+  .hero-shape img {
+    height: 60px;
+    width: calc(200% + 1.3px);
+  }
+
+  .main-title {
+    font-size: 55px;
+    line-height: 66px;
+  }
+  
+  .button-group {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .btn {
+    width: auto;
+  }
+
+  .info-columns {
+    flex-direction: row;
+  }
+
+  .info-column {
+    width: 50%;
+  }
+
+  .section-title {
+    font-size: 34px;
+    line-height: 44.2px;
+  }
+
+  .sub-title {
+    font-size: 25px;
+    line-height: 37.5px;
+  }
+}
+
+.custom-shape-divider-top-1752002980 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: scaleY(-1);
+}
+
+.custom-shape-divider-top-1752002980 svg {
+    position: relative;
+    display: block;
+    width: calc(127% + 1.3px);
+    height: 113px;
+}
+
+.custom-shape-divider-top-1752002980 .shape-fill {
+    fill: #F1EFEA;
+}
