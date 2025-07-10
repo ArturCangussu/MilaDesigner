@@ -77,7 +77,7 @@ body {
   position: relative; 
   z-index: 2;
 }
-
+/* tamanho da logo e dimensoes */
 .logo {
   width: 230px; 
   max-width: 100%; 
