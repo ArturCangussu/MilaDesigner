@@ -102,6 +102,7 @@ body {
 
 /* Estilos de Botões */
 .btn {
+  position: relative;
   display: inline-block;
   padding: 17px 50px;
   border-radius: 14px;
@@ -115,6 +116,7 @@ body {
   margin-top: 20px;
   display: inline-flex; /* Transforma o botão em um container flex */
   align-items: center;  /* Alinha o ícone e o texto no centro verticalmente */
+  transition: all 0.3s ease;
 }
 
 .btn-primary {
@@ -242,7 +244,7 @@ body {
 
 /* Cabeçalho da página de serviços */
 .services-header {
-  background-color: #1c1917; /* Mesmo fundo escuro da home */
+  background-color: #4e4646; /* Mesmo fundo escuro da home */
   color: white;
   text-align: center;
   padding: 60px 20px;
@@ -310,4 +312,29 @@ body {
   .services-list {
     grid-template-columns: 1fr 1fr; /* 2 colunas em telas maiores */
   }
+}
+
+
+/* OPÇÃO 3: EFEITO COM BRILHO */
+
+
+/* Adiciona o ícone de brilho oculto à direita */
+.btn::after {
+    content: '✦';
+    font-size: 20px;
+    position: absolute;
+    right: 25px;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+/* O que acontece ao passar o mouse */
+.btn:hover {
+    padding-right: 60px; /* Aumenta o espaço à direita para o brilho aparecer */
+    padding-left: 40px;
+}
+
+.btn:hover::after {
+    opacity: 1; /* Mostra o brilho */
+    transform: rotate(360deg); /* Faz o brilho girar ao aparecer */
 }
