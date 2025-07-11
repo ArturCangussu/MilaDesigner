@@ -329,10 +329,6 @@ body {
 }
 
 
-/* OPÇÃO 3: EFEITO COM BRILHO */
-
-
-/* Adiciona o ícone de brilho oculto à direita */
 .btn::after {
     content: '✦';
     font-size: 20px;
@@ -351,4 +347,23 @@ body {
 .btn:hover::after {
     opacity: 1; /* Mostra o brilho */
     transform: rotate(360deg); /* Faz o brilho girar ao aparecer */
+}
+
+/* Ajuste para telas menores (mobile) */
+@media (max-width: 767px) {
+ .service-footer {
+  flex-direction: column; /* Empilha os itens verticalmente */
+  align-items: flex-start; /* Alinha os itens à esquerda */
+ }
+
+ .service-footer .service-price {
+  margin-top: 5px; /* Adiciona um pequeno espaço entre a manutenção e o preço */
+ }
+}
+
+/* Ajuste para telas maiores (desktop) */
+@media (min-width: 768px) {
+ .services-list {
+  grid-template-columns: 1fr 1fr; /* 2 colunas em telas maiores */
+ }
 }
