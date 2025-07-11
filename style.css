@@ -349,6 +349,9 @@ body {
     transform: rotate(360deg); /* Faz o brilho girar ao aparecer */
 }
 
+.services-header .btn {
+  width: auto; /* Remove a largura de 100% APENAS para este botão */
+}
 /* Ajuste para telas menores (mobile) */
 @media (max-width: 767px) {
  .service-footer {
