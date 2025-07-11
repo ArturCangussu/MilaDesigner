@@ -361,6 +361,10 @@ body {
  }
 }
 
+.sub-title {
+        font-size: 22px; /* Aumenta o tamanho da fonte */
+        line-height: 30px; /* Ajusta a altura da linha para a nova fonte */
+}
 /* Ajuste para telas maiores (desktop) */
 @media (min-width: 768px) {
  .services-list {
