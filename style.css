@@ -287,17 +287,15 @@ body {
 /* Estilo para o 'rodapé' do card, que alinha duração e preço */
 .service-footer {
   display: flex;
-  margin-top: auto; /* Empurra o rodapé para o final do card */
-  /* --- Estilos para o CELULAR (Padrão) --- */
-  flex-direction: column; /* Itens um embaixo do outro */
-  align-items: flex-start; /* Alinha tudo à esquerda */
-  gap: 5px; /* Espaço entre a duração e o preço */
-}
-
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+} 
 .service-footer .service-duration {
-  color: var(--primary-color);
+  color:var(--primary-color);
+  font-size: 18px;
   font-weight: bold;
-  font-size: 16px; /* Tamanho de fonte para celular */
+  
 }
 .service-card:hover {
     transform: translateY(-5px); /* Efeito de elevação ao passar o mouse */
@@ -318,41 +316,17 @@ body {
 
 .service-card .service-price {
   font-family: var(--font-title);
+  font-size: 24px;
   font-weight: bold;
   color: var(--primary-color);
-  font-size: 20px; /* Tamanho de fonte para celular */
 }
 
 /* Ajuste para telas maiores (desktop) */
-@media (min-width: 768px)
-{
-  .services-list {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  /* --- Estilos para o COMPUTADOR --- */
-  .service-footer {
-    flex-direction: row; /* Volta a ser lado a lado */
-    justify-content: space-between; /* Espaça entre os itens */
-    align-items: center; /* Centraliza verticalmente */
-    gap: 0; /* Remove o espaço extra */
-  }
-
-  .service-footer .service-duration {
-    font-size: 18px; /* Restaura o tamanho da fonte para o PC */
-  }
-
-  .service-card .service-price {
-    font-size: 24px; /* Restaura o tamanho da fonte para o PC */
-  }
-}
-
-
-
+@media (min-width: 768px) {
   .services-list {
     grid-template-columns: 1fr 1fr; /* 2 colunas em telas maiores */
   }
-
+}
 
 
 /* OPÇÃO 3: EFEITO COM BRILHO */
