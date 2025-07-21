@@ -1,6 +1,6 @@
 {
-  "name": "MilaDesigner",
-  "short_name": "Mila Designs",
+  "name": "✦Mila Designer✦",
+  "short_name": "Mila Designer",
   "icons": [
     {
       "src": "/web-app-manifest-192x192.png",
@@ -15,7 +15,7 @@
       "purpose": "maskable"
     }
   ],
-  "theme_color": "#b4b1b1",
-  "background_color": "#f9eff4",
+  "theme_color": "#1e191b",
+  "background_color": "#595959",
   "display": "standalone"
 }
