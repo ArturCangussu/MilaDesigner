@@ -382,88 +382,98 @@ body {
    ESTILOS DA PÁGINA SOBRE MIM
    ================================= */
 
+/* ===================================================
+   NOVO ESTILO 'SOBRE MIM' COM BLOCOS SEPARADOS
+   =================================================== */
+
+/* Estrutura principal da página 'Sobre Mim' */
 .about-me-content {
   display: flex;
-  flex-direction: column; /* Padrão para mobile */
+  flex-direction: column;
   align-items: center;
-  gap: 40px;
-  padding: 30px 0;
+  gap: 20px; /* Espaço entre a foto e o container dos blocos */
+  padding-top: 30px;
+  padding-bottom: 30px;
 }
 
 .about-me-pic-container {
-  flex-shrink: 0;
+  text-align: center;
 }
 
 .about-me-pic {
-  width: 220px;
-  height: 220px;
-  border-radius: 50%; /* Deixa a foto redonda */
-  object-fit: cover; /* Garante que a foto não fique distorcida */
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
   border: 5px solid var(--primary-color);
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
 }
 
-/* Dentro de @media (max-width: 767px) { ... } */
+.about-me-main-title {
+  font-family: var(--font-title);
+  color: var(--primary-color);
+  font-size: 30px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
 
-/* ===================================================
-   ESTILO SUAVE E ELEGANTE PARA 'SOBRE MIM' NO MOBILE
-   =================================================== */
+/* Container que segura todos os blocos de texto */
+.about-me-blocks-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Espaço entre cada bloco de texto */
+}
 
-/* Este código deve estar DENTRO de @media (max-width: 767px) { ... } */
-
-.about-me-text {
-    /* Ponto 1: Fundo claro, bordas e sombra para o bloco */
-    background-color: var(--background-light);
+/* Estilo individual de cada bloco de parágrafo */
+.about-me-block {
+    background-color: #FFFFFF;
     border-radius: 14px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-
-    /* Ponto 2: Mais espaçamento interno */
-    padding: 30px 25px;
-
-    /* Ponto 5: Espaço entre a foto e o bloco de texto */
-    margin-top: 30px; 
+    padding: 25px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
+    border-left: 5px solid var(--primary-color); /* Detalhe estético na lateral */
+    display: flex;
+    align-items: flex-start; /* Alinha ícone e texto no topo */
+    gap: 20px; /* Espaço entre o ícone e o texto */
+    transition: transform 0.3s ease;
 }
 
-.about-me-text h2 {
-    /* Ponto 3: Título centralizado e ligeiramente menor */
-    text-align: center;
-    font-size: 28px; 
+.about-me-block:hover {
+    transform: translateY(-5px); /* Efeito sutil para desktop */
+}
+
+.about-me-block i {
+    font-size: 28px;
     color: var(--primary-color);
-    font-family: var(--font-title);
-    margin-bottom: 25px;
+    padding-top: 3px; /* Ajuste fino para alinhar o ícone com o texto */
 }
 
-.about-me-text p {
-    /* Ponto 4: Maior espaçamento nas linhas e parágrafos */
-    line-height: 1.8;
-    margin-bottom: 20px; 
+.about-me-block p {
+    flex: 1; /* Faz o parágrafo ocupar o espaço restante */
+    margin: 0; /* Remove margens padrão do parágrafo */
     font-size: 16px;
-    text-align: left;
+    line-height: 1.7;
     color: var(--text-color);
 }
 
-/* Remove a margem extra do último parágrafo para um acabamento limpo */
-.about-me-text p:last-child {
-    margin-bottom: 0;
-}
-
-/* Ajuste para telas maiores (desktop) */
+/* Ajustes para telas maiores (Desktop) */
 @media (min-width: 768px) {
-  .about-me-content {
-    flex-direction: row; /* Lado a lado no desktop */
-    text-align: left;
-    align-items: flex-start;
-  }
+    .about-me-pic {
+        width: 250px;
+        height: 250px;
+    }
 
-  .about-me-text {
-    text-align: left;
-  }
+    .about-me-main-title {
+        font-size: 34px;
+    }
 
-  .about-me-pic {
-    width: 250px;
-    height: 250px;
-  }
-} 
+    .about-me-blocks-container {
+        gap: 25px;
+        max-width: 700px; /* Limita a largura dos blocos no desktop para melhor leitura */
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
 
 /* =========================================
    BOTÃO DE AGENDAMENTO FLUTUANTE (FAB)
