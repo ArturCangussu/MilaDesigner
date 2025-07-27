@@ -403,22 +403,36 @@ body {
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
 }
 
+/* Dentro de @media (max-width: 767px) { ... } */
+
 .about-me-text {
-  text-align: center; /* Centraliza o texto no mobile */
+  background-color: #FFFFFF; /* Fundo branco para criar o 'cartão' */
+  padding: 30px 25px; /* Mais espaço interno para o texto respirar */
+  border-radius: 14px; /* Bordas arredondadas, como nos outros cards */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); /* Sombra suave para destacar */
+  border-top: 4px solid var(--primary-color); /* Detalhe com a cor da marca */
+  margin-top: 30px; /* Garante espaço entre a foto e o cartão de texto */
 }
 
 .about-me-text h2 {
   font-family: var(--font-title);
   color: var(--primary-color);
-  font-size: 32px;
-  margin-bottom: 20px;
+  font-size: 30px; /* Tamanho de destaque para o título */
+  margin-bottom: 25px;
+  text-align: center; /* O título pode ficar centralizado */
 }
 
 .about-me-text p {
-  font-size: 17px;
-  line-height: 1.7;
+  font-size: 16.5px; /* Tamanho confortável para leitura */
+  line-height: 1.8;  /* ESSENCIAL: Aumenta o espaço entre as linhas */
   color: var(--text-color);
-  margin-bottom: 15px;
+  margin-bottom: 20px; /* Mais espaço entre os parágrafos */
+  text-align: left;    /* ESSENCIAL: Alinha o texto à esquerda para leitura fácil */
+}
+
+/* Garante que o último parágrafo não tenha margem extra embaixo */
+.about-me-text p:last-child {
+    margin-bottom: 0;
 }
 
 /* Ajuste para telas maiores (desktop) */
