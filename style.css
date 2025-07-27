@@ -374,3 +374,68 @@ body {
   grid-template-columns: 1fr 1fr; /* 2 colunas em telas maiores */
  }
 }
+
+
+/* ---------------------- sobre mim */
+
+/* =================================
+   ESTILOS DA PÁGINA SOBRE MIM
+   ================================= */
+
+.about-me-content {
+  display: flex;
+  flex-direction: column; /* Padrão para mobile */
+  align-items: center;
+  gap: 40px;
+  padding: 30px 0;
+}
+
+.about-me-pic-container {
+  flex-shrink: 0;
+}
+
+.about-me-pic {
+  width: 220px;
+  height: 220px;
+  border-radius: 50%; /* Deixa a foto redonda */
+  object-fit: cover; /* Garante que a foto não fique distorcida */
+  border: 5px solid var(--primary-color);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+.about-me-text {
+  text-align: center; /* Centraliza o texto no mobile */
+}
+
+.about-me-text h2 {
+  font-family: var(--font-title);
+  color: var(--primary-color);
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+.about-me-text p {
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--text-color);
+  margin-bottom: 15px;
+}
+
+/* Ajuste para telas maiores (desktop) */
+@media (min-width: 768px) {
+  .about-me-content {
+    flex-direction: row; /* Lado a lado no desktop */
+    text-align: left;
+    align-items: flex-start;
+  }
+
+  .about-me-text {
+    text-align: left;
+  }
+
+  .about-me-pic {
+    width: 250px;
+    height: 250px;
+  }
+} 
+
