@@ -7,6 +7,12 @@
   --font-title: "Philosopher", sans-serif;
 }
 
+html, body {
+  margin: 0;
+  padding: 0; /* É uma boa prática zerar o padding aqui também */
+  overflow-x: hidden;
+}
+
 body {
   margin: 0;
   font-family: var(--font-main);
@@ -14,7 +20,6 @@ body {
   background-color: #fff;
   font-size: 15.5px;
   line-height: 24.8px;
-  overflow-x: hidden;
 }
 
 /* Estilos do Container */
