@@ -321,6 +321,8 @@ body {
   color: var(--primary-color);
 }
 
+
+
 /* Ajuste para telas maiores (desktop) */
 @media (min-width: 768px) {
   .services-list {

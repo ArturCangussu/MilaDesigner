@@ -5,13 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mila Designer</title>
     <link rel="stylesheet" href="style.css" />
-
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
-
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    
     <link href="https://fonts.googleapis.com/css2?family=Palanquin&family=Philosopher&display=swap"  rel="stylesheet"/>
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
 
 <link rel="icon" type="image/png" href="images/favicon-96x96.png" sizes="96x96" />
@@ -40,9 +37,9 @@
           </svg>
         </div>
         <div class="container hero-content">  
-          <img src="images/Logo-3.png" alt="Logo" class="logo" />
-          <h1 class="main-title">✦ Mila Designer ✦</h1>
-          <div class="button-group">
+          <img src="images/Logo-3.png" alt="Logo" class="logo" data-aos="zoom-in-down" />
+          <h1 class="main-title" data-aos="fade-up" data-aos-delay="200" >✦ Mila Designer ✦</h1>
+          <div class="button-group" data-aos="fade-up" data-aos-delay="400">
             <a
               href="https://wa.me/5533984255696?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20um%20hor%C3%A1rio."
               role="button"
@@ -66,7 +63,7 @@
 
       <section class="info-section">
         <div class="container info-columns">
-          <div class="info-column">
+          <div class="info-column" data-aos="fade-right">
             <h2 class="section-title">✦ Para seu agendamento</h2>
             <h4 class="sub-title">Agendamento somente por whatsapp!</h4>
             <a
@@ -87,7 +84,7 @@
             </a>
           </div>
 
-          <div class="info-column">
+          <div class="info-column" data-aos="fade-right">
             <h2 class="section-title">✦ Localização</h2>
             <h4 class="sub-title">
               Av. Getúlio Vargas 880, Centro | 2º Andar Sala 21 | Entrada - Lua de Prata
@@ -97,5 +94,11 @@
         </div>
       </section>
     </main>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> <script>
+  AOS.init({
+    duration: 800, // Duração da animação em milissegundos
+    once: true,    // Animação acontece apenas uma vez
+  });
+</script>
   </body>
 </html>
