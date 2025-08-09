@@ -66,16 +66,16 @@ Valoriza seu olhar com um efeito lifting delicado, sem necessidade de máscara d
 Perfeita para realçar o volume e a simetria das sobrancelhas com um toque de sofisticação natural.</p>
                     <div class="service-footer">
                     <p class="service-duration"> Manutenção: 4-6 Semanas</p>
-                    <div class="service-price">R$ 80,00</div>
+                    <div class="service-price">R$ 90,00</div>
                 </div></div>
             </div>
         </div>
     </main>
 
-    <a href="https://wa.me/5533984255696?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20um%20hor%C3%A1rio." class="floating-schedule-button" id="fab-button">
+<button class="floating-schedule-button open-modal-button" id="fab-button" role="button">
     <i class="fab fa-whatsapp"></i>
     <span>Agendar</span>
-</a>
+</button>
 
 <script>
     // Executa somente em telas de celular
@@ -99,6 +99,106 @@ Perfeita para realçar o volume e a simetria das sobrancelhas com um toque de so
     duration: 800, // Duração da animação em milissegundos
     once: true,    // Animação acontece apenas uma vez
   });
+</script>
+
+<div id="agendamento-modal" class="modal-overlay">
+    <div class="modal-content" data-aos="zoom-in" data-aos-duration="400">
+        <span class="close-button">&times;</span>
+        <h2 class="section-title">✦ Agendamento Rápido ✦</h2>
+        <p class="modal-subtitle">Preencha os dados abaixo para agilizar seu atendimento.</p>
+
+        <form id="agendamento-form">
+            <div class="form-group">
+                <label for="nome">Seu Nome</label>
+                <input type="text" id="nome" name="nome" placeholder="Digite seu nome completo" required>
+            </div>
+
+            <div class="form-group">
+                <label for="procedimento">Procedimento Desejado</label>
+                <select id="procedimento" name="procedimento" required>
+                    <option value="" disabled selected>Selecione um serviço...</option>
+                    <option value="Design Personalizado">Design Personalizado (R$25,00)</option>
+                    <option value="Design com Henna">Design com Henna (R$35,00)</option>
+                    <option value="Brow Lamination">Brow Lamination (R$90,00)</option>
+                    </select>
+            </div>
+
+            <div class="form-group">
+                <label for="disponibilidade">Melhor Dia e Horário</label>
+                <input type="text" id="disponibilidade" name="disponibilidade" placeholder="Ex: Quarta à tarde, ou Sábado de manhã">
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-submit">
+                <i class="fab fa-whatsapp"></i>Confirmar Agendamento
+            </button>
+        </form>
+    </div>
+</div>
+
+
+<script>
+// =====================================
+// LÓGICA DO MODAL DE AGENDAMENTO
+// =====================================
+const modal = document.getElementById('agendamento-modal');
+const openModalButtons = document.querySelectorAll('.open-modal-button');
+const closeModalButton = document.querySelector('.close-button');
+const agendamentoForm = document.getElementById('agendamento-form');
+
+// Função para abrir o modal
+const openModal = () => {
+    modal.style.display = 'flex';
+    document.body.classList.add('modal-open');
+}
+
+// Função para fechar o modal
+const closeModal = () => {
+    modal.style.display = 'none';
+    document.body.classList.remove('modal-open');
+}
+
+// Adiciona o evento de clique a todos os botões de agendamento
+openModalButtons.forEach(button => {
+    button.addEventListener('click', openModal);
+});
+
+// Eventos para fechar o modal
+closeModalButton.addEventListener('click', closeModal);
+modal.addEventListener('click', (event) => {
+    // Fecha o modal apenas se o clique for no fundo (overlay)
+    if (event.target === modal) {
+        closeModal();
+    }
+});
+
+// Lógica do envio do formulário
+agendamentoForm.addEventListener('submit', (event) => {
+    event.preventDefault(); // Impede o envio padrão do formulário
+
+    // Coleta os dados dos campos
+    const nome = document.getElementById('nome').value;
+    const procedimento = document.getElementById('procedimento').value;
+    const disponibilidade = document.getElementById('disponibilidade').value;
+    
+    // Seu número de WhatsApp
+    const seuNumero = '5533984255696';
+
+    // Monta a mensagem personalizada
+    const mensagem = `Olá! Gostaria de agendar um horário.\n\n*Nome:* ${nome}\n*Procedimento:* ${procedimento}\n*Disponibilidade:* ${disponibilidade}`;
+
+    // Codifica a mensagem para a URL
+    const mensagemCodificada = encodeURIComponent(mensagem);
+
+    // Cria a URL do WhatsApp
+    const whatsappURL = `https://wa.me/${seuNumero}?text=${mensagemCodificada}`;
+
+    // Redireciona o usuário para o WhatsApp
+    window.open(whatsappURL, '_blank');
+
+    // Opcional: fecha o modal e limpa o formulário após o envio
+    closeModal();
+    agendamentoForm.reset();
+});
 </script>
 </body>
 </html>
