@@ -483,7 +483,8 @@ body {
 }
 
 .modal-overlay {
-    /* display: none; Escondido por padrão */
+    display: none; 
+    /* Escondido por padrão */
 }
 /* =========================================
    BOTÃO DE AGENDAMENTO FLUTUANTE (FAB)
@@ -537,7 +538,7 @@ body {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2), 0 0 0 4px rgba(217, 141, 177, 0.4);
 }
 
-
+}
 
 /* ================================== */
 /* ESTILO DO MODAL DE AGENDAMENTO     */
