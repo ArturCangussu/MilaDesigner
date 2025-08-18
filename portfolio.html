@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfólio | Mila Designer</title>
+
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Palanquin&family=Philosopher&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+
+    <link rel="icon" type="image/png" href="images/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg" />
+    <link rel="shortcut icon" href="images/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="MyWebSite" />
+    <link rel="manifest" href="images/site.webmanifest" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+</head>
+<body>
+    <header class="services-header">
+        <div class="container">
+            <h1 class="section-title">✦ Portfólio ✦</h1>
+            <p class="header-subtitle">Veja alguns dos meus trabalhos e transformações.</p>
+            <a href="index.html" class="btn btn-outline">Voltar para o Início</a>
+        </div>
+    </header>
+
+<main class="info-section">
+    <div class="container">
+        <div class="portfolio-grid">
+
+            <div class="portfolio-card" data-aos="fade-up">
+                <picture>
+                    <source srcset="images/design s.webp" type="image/webp">
+                    <source srcset="images/design s.jpg" type="image/jpeg"> 
+                    <img src="images/design s.webp" alt="Foto do procedimento de Design Personalizado em uma cliente">
+                </picture>
+                <div class="portfolio-overlay">
+                    <h3 class="portfolio-caption">Design Personalizado | Realçando a Beleza Natural</h3>
+                </div>
+            </div>
+
+            <div class="portfolio-card" data-aos="fade-up" data-aos-delay="100">
+                <img src="images/Design personalizado 1.webp" alt="Foto do procedimento de Design Com Henna em uma cliente">
+                <div class="portfolio-overlay">
+                    <h3 class="portfolio-caption">Design Personalizado | Realçando a Beleza Natural</h3>
+                </div>
+            </div>
+
+            <div class="portfolio-card" data-aos="fade-up" data-aos-delay="200">
+                <img src="images/Design com Henna.webp" alt="Foto do procedimento Design com Henna em uma cliente">
+                <div class="portfolio-overlay">
+                    <h3 class="portfolio-caption">Design com Henna | Preenchimento Natural e Efeito Ombré</h3>
+                </div>
+            </div>
+
+            <div class="portfolio-card" data-aos="fade-up">
+                <img src="images/Design Com henna teste.webp" alt="Foto do procedimento de Design com Henna em uma cliente">
+                <div class="portfolio-overlay">
+                    <h3 class="portfolio-caption">Design com Henna | Preenchimento Natural e Efeito Ombré</h3>
+                </div>
+            </div>
+            
+            <div class="portfolio-card" data-aos="fade-up">
+                <img src="images/Brow lamination 2.webp" alt="Foto do procedimento Brow Lamination em uma cliente">
+                <div class="portfolio-overlay">
+                    <h3 class="portfolio-caption">Brow Lamination | Volume e Definição com Naturalidade</h3>
+                </div>
+            </div>
+
+            <div class="portfolio-card" data-aos="fade-up" data-aos-delay="100">
+                <img src="images/Brow Lamination 1.webp" alt="Foto do procedimento de Brow Lamination em uma cliente">
+                <div class="portfolio-overlay">
+                    <h3 class="portfolio-caption">Brow Lamination | Volume e Definição com Naturalidade</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+    <button class="floating-schedule-button open-modal-button" id="fab-button" role="button">
+        <i class="fab fa-whatsapp"></i>
+        <span>Agendar</span>
+    </button>
+
+    <div id="agendamento-modal" class="modal-overlay">
+        <div class="modal-content" data-aos="zoom-in" data-aos-duration="400">
+            <span class="close-button">×</span>
+            <h2 class="section-title">✦ Agendamento Rápido ✦</h2>
+            <p class="modal-subtitle">Preencha os dados abaixo para agilizar seu atendimento.</p>
+
+            <form id="agendamento-form">
+                <div class="form-group">
+                    <label for="nome">Seu Nome</label>
+                    <input type="text" id="nome" name="nome" placeholder="Digite seu nome" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="procedimento">Procedimento Desejado</label>
+                    <select id="procedimento" name="procedimento" required>
+                        <option value="" disabled selected>Selecione um serviço...</option>
+                        <option value="Design Personalizado">Design Personalizado (R$30,00)</option>
+                        <option value="Design com Henna">Design com Henna (R$40,00)</option>
+                        <option value="Brow Lamination">Brow Lamination (R$90,00)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="disponibilidade">Melhor Dia e Horário</label>
+                    <input type="text" id="disponibilidade" name="disponibilidade" placeholder="Ex: Quarta à tarde, ou Sábado de manhã">
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-submit">
+                    <i class="fab fa-whatsapp"></i>Confirmar Agendamento
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> 
+    <script>
+    // Inicia a biblioteca de animações
+    AOS.init({
+        duration: 800,
+        once: true,
+    });
+
+    // Lógica para mostrar o botão flutuante ao rolar a página (em telas menores)
+    if (window.matchMedia("(max-width: 767px)").matches) {
+        const fabButton = document.getElementById('fab-button');
+        const scrollThreshold = 200;
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > scrollThreshold) {
+                fabButton.classList.add('visible');
+            } else {
+                fabButton.classList.remove('visible');
+            }
+        });
+    }
+
+    // =====================================
+    // LÓGICA DO MODAL DE AGENDAMENTO (A PARTE QUE FAZ O BOTÃO FUNCIONAR)
+    // =====================================
+    const modal = document.getElementById('agendamento-modal');
+    const openModalButtons = document.querySelectorAll('.open-modal-button');
+    const closeModalButton = document.querySelector('.close-button');
+    const agendamentoForm = document.getElementById('agendamento-form');
+
+    // Função para abrir o modal
+    const openModal = () => {
+        modal.style.display = 'flex';
+        document.body.classList.add('modal-open');
+    }
+
+    // Função para fechar o modal
+    const closeModal = () => {
+        modal.style.display = 'none';
+        document.body.classList.remove('modal-open');
+    }
+
+    // Adiciona o evento de clique a TODOS os botões com a classe 'open-modal-button'
+    openModalButtons.forEach(button => {
+        button.addEventListener('click', openModal);
+    });
+
+    // Eventos para fechar o modal
+    closeModalButton.addEventListener('click', closeModal);
+    modal.addEventListener('click', (event) => {
+        if (event.target === modal) {
+            closeModal();
+        }
+    });
+
+    // Lógica do envio do formulário para o WhatsApp
+    agendamentoForm.addEventListener('submit', (event) => {
+        event.preventDefault(); 
+
+        const nome = document.getElementById('nome').value;
+        const procedimento = document.getElementById('procedimento').value;
+        const disponibilidade = document.getElementById('disponibilidade').value;
+        
+        const seuNumero = '5533984255696';
+        const mensagem = `Olá! Gostaria de agendar um horário.\n\n*Nome:* ${nome}\n*Procedimento:* ${procedimento}\n*Disponibilidade:* ${disponibilidade}`;
+        const mensagemCodificada = encodeURIComponent(mensagem);
+        const whatsappURL = `https://wa.me/${seuNumero}?text=${mensagemCodificada}`;
+
+        window.open(whatsappURL, '_blank');
+
+        closeModal();
+        agendamentoForm.reset();
+    });
+    </script>
+    </body>
+</html>

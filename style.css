@@ -644,3 +644,108 @@ body.modal-open {
 }
 
 
+/* ==================================================
+   ESTILOS DA PÁGINA DE PORTFÓLIO (MOBILE-FIRST)
+   ================================================== */
+
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: 1fr; 
+    gap: 20px; 
+    padding: 20px 0;
+}
+
+.portfolio-card {
+    position: relative;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    background-color: #fff;
+    padding: 10px;
+    border-bottom: 5px solid var(--primary-color);
+    aspect-ratio: 4 / 5; 
+    display: flex;
+    flex-direction: column;
+}
+
+.portfolio-card picture, .portfolio-card img {
+    display: block;
+    width: 100%;
+    height: 100%; 
+    object-fit: cover; 
+    border-radius: 6px; 
+    flex-grow: 1; 
+}
+
+.portfolio-overlay {
+position: absolute;
+bottom: 0;
+left: 0;
+width: 100%;
+background: linear-gradient(to top, rgba(233, 143, 221, 0.85) 0%, transparent 50%); 
+padding: 15px 20px; 
+box-sizing: border-box;
+display: flex;
+align-items: flex-end; 
+}
+
+.portfolio-caption {
+font-family: var(--font-title);
+color: white;
+font-size: 18px; 
+line-height: 1.2;
+text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+margin-bottom: 5px; 
+}
+
+/* Para telas um pouco maiores, como tablets, podemos mostrar duas colunas */
+@media (min-width: 600px) {
+    .portfolio-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+
+
+
+.portfolio-card {
+    position: relative;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(131, 130, 130, 0.08);
+    background-color: #ecbed4;
+    padding: 10px;
+    border-bottom: 5px #fff;
+    aspect-ratio: 4 / 5; 
+    display: flex;
+    flex-direction: column;
+}
+
+.portfolio-card picture, .portfolio-card img {
+    display: block;
+    width: 100%;
+    height: 100%; 
+    object-fit: cover; 
+    border-radius: 6px; 
+    flex-grow: 1; 
+}
+
+
+.promo-banner {
+    padding: 12px 20px;
+    margin: 25px auto; 
+    border-radius: 14px; 
+    border: 2px dashed var(--primary-color); 
+    background-color: rgba(217, 141, 177, 0.07); 
+    max-width: 450px; 
+    text-align: center;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+.promo-banner strong {
+    color: var(--primary-color); 
+    font-weight: 700; 
+}  
+

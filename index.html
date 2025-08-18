@@ -17,6 +17,7 @@
 <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png" />
 <meta name="apple-mobile-web-app-title" content="MyWebSite" />
 <link rel="manifest" href="images/site.webmanifest" />
+<meta name="description" content="Especialista em design de sobrancelhas em Teófilo Otoni. Agende seu horário pelo WhatsApp e transforme seu olhar. Veja o portfólio e os serviços.">
 
 </head>
   <body>
@@ -36,45 +37,51 @@
             ></path>
           </svg>
         </div>
-        <div class="container hero-content">  
-          <img src="images/Logo-3.png" alt="Logo" class="logo" data-aos="zoom-in-down" />
-          <h1 class="main-title" data-aos="fade-up" data-aos-delay="200" >✦ Mila Designer ✦</h1>
-          <div class="button-group" data-aos="fade-up" data-aos-delay="400">
-            <button role="button" class="btn btn-primary open-modal-button">
-              <i class = "fab fa-whatsapp"></i>Agendamento
-            </button>
-            <a href="serviços.html" role="button" class="btn btn-secondary">
+<div class="container hero-content">  
+    <img src="images/Logo-3.png" alt="Logo" class="logo" data-aos="zoom-in-down" />
+    <h1 class="main-title" data-aos="fade-up" data-aos-delay="200" >✦ Mila Designer ✦</h1>
+
+    <div class="promo-banner" data-aos="fade-up" data-aos-delay="300">
+        💖 Primeira vez aqui? <strong>Ganhe 20% de desconto + Brinde surpresa</strong> no seu atendimento!
+    </div>
+    <div class="button-group" data-aos="fade-up" data-aos-delay="400">
+        <button role="button" class="btn btn-primary open-modal-button">
+            <i class = "fab fa-whatsapp"></i>Agendamento
+        </button>
+        <a href="serviços.html" role="button" class="btn btn-secondary">
             <i class="fas fa-clipboard"></i>Carta de Serviços
-            </a>
-            <a
-              href="sobre-mim.html"
-              role="button"
-              class="btn btn-outline"
-            >
+        </a>
+        <a
+            href="sobre-mim.html"
+            role="button"
+            class="btn btn-outline"
+        >
             <i class="fas fa-question-circle icon-vazado"></i>Sobre mim
-            </a>
-          </div>
-        </div>
+        </a>
+    </div>
+</div>
       </section>
 
       <section class="info-section">
         <div class="container info-columns">
-          <div class="info-column" data-aos="fade-right">
-            <h2 class="section-title">✦ Para seu agendamento</h2>
-            <h4 class="sub-title">Agendamento somente por whatsapp!</h4>
-            <button role="button" class="btn btn-primary open-modal-button">
-              <i class = "fab fa-whatsapp"></i>Clique aqui
-            </button>
 
-            <h4 class="sub-title">Confira o portfólio no Instagram</h4>
-            <a
-              href="https://www.instagram.com/miladesigner__/"
-              role="button"
-              class="btn btn-primary"
-            >
-            <i class="fab fa-instagram"></i> Instagram
-            </a>
-          </div>
+
+<div class="info-column" data-aos="fade-right">
+    <h2 class="section-title">✦ Conheça Meu Trabalho</h2>
+    <h4 class="sub-title">Veja as transformações e a qualidade dos meus serviços.</h4>
+    <a href="portfolio.html" role="button" class="btn btn-primary">
+        <i class="fas fa-images"></i>Ver Portfólio
+    </a>
+
+    <h4 class="sub-title">Confira mais no Instagram</h4>
+    <a
+        href="https://www.instagram.com/miladesigner__/"
+        role="button"
+        class="btn btn-secondary"
+    >
+    <i class="fab fa-instagram"></i> Instagram
+    </a>
+</div>
 
           <div class="info-column" data-aos="fade-right">
             <h2 class="section-title">✦ Localização</h2>
@@ -89,7 +96,7 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> <script>
   AOS.init({
     duration: 800, // Duração da animação em milissegundos
-    once: true,    // Animação acontece apenas uma vez
+    once: true,   
   });
 </script>
 
@@ -184,10 +191,10 @@ agendamentoForm.addEventListener('submit', (event) => {
     // Cria a URL do WhatsApp
     const whatsappURL = `https://wa.me/${seuNumero}?text=${mensagemCodificada}`;
 
-    // Redireciona o usuário para o WhatsApp
+    
     window.open(whatsappURL, '_blank');
 
-    // Opcional: fecha o modal e limpa o formulário após o envio
+    
     closeModal();
     agendamentoForm.reset();
 });
