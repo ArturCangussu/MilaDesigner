@@ -749,3 +749,92 @@ margin-bottom: 5px;
     font-weight: 700; 
 }  
 
+
+/* ===================================
+   ESTILO DA PRÉVIA "SOBRE MIM"
+   =================================== */
+
+.about-preview-section {
+    background-color: #fff; /* Fundo branco para contrastar */
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.about-preview-pic {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid var(--primary-color);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.about-preview-text {
+    font-size: 17px;
+    line-height: 1.7;
+    max-width: 600px; /* Limita a largura do texto para melhor leitura */
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 30px;
+    color: #555; /* Um cinza escuro suave */
+}
+
+/* Ajuste para o botão dentro desta seção */
+.about-preview-section .btn {
+    width: auto; /* Para o botão não ocupar 100% da largura */
+}
+
+
+/* ===================================
+   ESTILO DA PÁGINA DE DICAS
+   =================================== */
+
+.dica-card {
+    background-color: #fff;
+    border-radius: 14px;
+    padding: 25px 30px;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
+    border-left: 5px solid var(--primary-color);
+}
+
+.dica-card h3 {
+    font-family: var(--font-title);
+    font-size: 22px;
+    color: var(--text-color);
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.dica-card h3 i {
+    margin-right: 10px;
+    color: var(--primary-color);
+}
+
+.dica-card p {
+    margin-bottom: 15px;
+}
+
+.dica-card ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.dica-card ul li {
+    padding-left: 25px;
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.dica-card ul li::before {
+    content: '✦';
+    color: var(--primary-color);
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.info-column .btn + .btn {
+    margin-top: 50px;
+}
