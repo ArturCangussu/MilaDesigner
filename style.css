@@ -838,3 +838,50 @@ margin-bottom: 5px;
 .info-column .btn + .btn {
     margin-top: 50px;
 }
+
+
+
+/* ===================================
+   ESTILOS DA SEÇÃO DE DEPOIMENTOS
+   =================================== */
+
+.section-divider {
+    width: 80px;
+    height: 3px;
+    background-color: var(--primary-color);
+    opacity: 0.5;
+    border-radius: 5px;
+    margin: 80px auto 40px auto; /* Espaçamento: 80px acima, centralizado, 40px abaixo */
+}
+
+.testimonial-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* 1 coluna no mobile, que é a prioridade */
+    gap: 25px; /* Espaço entre os depoimentos */
+    margin-top: 30px;
+    margin-bottom: 50px; /* Espaço extra no final da página */
+}
+
+.testimonial-card {
+    border-radius: 14px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    overflow: hidden; /* Garante que a imagem não passe da borda */
+    transition: transform 0.3s ease;
+}
+
+.testimonial-card:hover {
+    transform: translateY(-5px); /* Efeito sutil no computador */
+}
+
+.testimonial-card img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+/* Em telas maiores, podemos usar 2 colunas para aproveitar o espaço */
+@media (min-width: 768px) {
+    .testimonial-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
