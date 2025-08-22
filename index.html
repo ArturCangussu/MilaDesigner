@@ -102,6 +102,10 @@
     once: true,   
   });
 </script>
+<button class="floating-schedule-button open-modal-button" id="fab-button" role="button">
+    <i class="fab fa-whatsapp"></i>
+    <span>Agendar</span>
+</button>
 
 <div id="agendamento-modal" class="modal-overlay">
     <div class="modal-content" data-aos="zoom-in" data-aos-duration="400">
@@ -201,6 +205,29 @@ agendamentoForm.addEventListener('submit', (event) => {
     closeModal();
     agendamentoForm.reset();
 });
+
+
 </script>
-  </body>
+
+<script>
+    AOS.init({
+        duration: 800, 
+        once: true,  
+    });
+
+
+    if (window.matchMedia("(max-width: 767px)").matches) {
+        const fabButton = document.getElementById('fab-button');
+        const scrollThreshold = 200;
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > scrollThreshold) {
+                fabButton.classList.add('visible');
+            } else {
+                fabButton.classList.remove('visible');
+            }
+        });
+    }
+
+</script>
+</body>
 </html>
