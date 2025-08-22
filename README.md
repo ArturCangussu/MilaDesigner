@@ -76,8 +76,7 @@ cd MilaDesigner
 
 # 3. Abra o arquivo `index.html` no seu navegador de preferência.
 # Ou, para uma melhor experiência, use a extensão "Live Server" do VS Code.
-
-
+```
 <p align="center">
   Desenvolvido por <strong>Artur Cangussu</strong>
 </p>
