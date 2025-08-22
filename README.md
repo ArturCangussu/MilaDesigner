@@ -69,7 +69,7 @@ Este é um projeto estático, então não há necessidade de um back-end ou inst
 
 ```bash
 # 1. Clone o repositório
-git clone [https://github.com/Artur-Cangussu/mila-designer.git](https://github.com/Artur-Cangussu/mila-designer.git)
+git clone [https://github.com/Artur-Cangussu/miladesigner.git](https://github.com/Artur-Cangussu/mila-designer.git)
 
 # 2. Navegue até a pasta do projeto
 cd mila-designer
