@@ -8,7 +8,7 @@
 </p>
 
 <p align="center">
-  Um site-portfólio elegante e totalmente responsivo, construído com foco 100% na experiência mobile (Mobile First) para uma profissional da área da beleza.
+  > Um site-portfólio elegante e totalmente responsivo, construído com foco 100% na experiência mobile (Mobile First) para uma profissional da área da beleza.
 </p>
 
 <p align="center">
