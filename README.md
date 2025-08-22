@@ -78,6 +78,7 @@ cd MilaDesigner
 # Ou, para uma melhor experiência, use a extensão "Live Server" do VS Code.
 ```
 <p align="center">
+  ✍️ Autor
   Desenvolvido por <strong>Artur Cangussu</strong>
 </p>
 
