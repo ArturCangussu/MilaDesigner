@@ -72,7 +72,7 @@ Este é um projeto estático, então não há necessidade de um back-end ou inst
 git clone [https://github.com/Artur-Cangussu/miladesigner.git](https://github.com/Artur-Cangussu/mila-designer.git)
 
 # 2. Navegue até a pasta do projeto
-cd mila-designer
+cd MilaDesigner
 
 # 3. Abra o arquivo `index.html` no seu navegador de preferência.
 # Ou, para uma melhor experiência, use a extensão "Live Server" do VS Code.
