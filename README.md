@@ -91,5 +91,5 @@ cd MilaDesigner
 </p>
 
 <p align="center">
-  Teófilo Otoni, MG - Agosto de 2025
+  Teófilo Otoni, MG - Maio de 2025
 </p>
