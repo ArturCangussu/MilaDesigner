@@ -78,7 +78,7 @@ cd MilaDesigner
 # Ou, para uma melhor experiência, use a extensão "Live Server" do VS Code.
 ```
 <p align="center">
-  ✍️ Autor
+  ##✍️ Autor
 </p>
 <p align="center">
   Desenvolvido por <strong>Artur Cangussu</strong>
