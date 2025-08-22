@@ -12,7 +12,7 @@
 </p>
 
 <p align="center">
-  <a href="[COLE-AQUI-O-LINK-DO-SEU-SITE-NO-AR]" target="_blank">
+  <a href="miladesigner.com" target="_blank">
     <img src="https://img.shields.io/badge/Ver%20Site%20ao%20Vivo-%23D98DB1?style=for-the-badge&logo=vercel&logoColor=white">
   </a>
 </p>
