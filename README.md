@@ -4,7 +4,7 @@
 ![Licença](https://img.shields.io/badge/licença-MIT-blue.svg)
 
 <p align="center">
-  <img src="![Image](https://github.com/user-attachments/assets/e8b149c0-ec4d-44dd-a151-aa8f3c5eee55)" alt="Prévia do Site Mila Designer em dispositivos móveis" width="600px">
+  <img src="https://github.com/user-attachments/assets/e8b149c0-ec4d-44dd-a151-aa8f3c5eee55" alt="Prévia do Site Mila Designer em dispositivos móveis" width="600px">
 </p>
 
 <p align="center">
