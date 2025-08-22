@@ -80,7 +80,7 @@ cd MilaDesigner
 <p align="center">
   ✍️ Autor
 </p>
-<p
+<p align="center">
   Desenvolvido por <strong>Artur Cangussu</strong>
 </p>
 
