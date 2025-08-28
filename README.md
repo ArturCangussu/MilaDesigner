@@ -7,9 +7,9 @@
   <img src="https://github.com/user-attachments/assets/e8b149c0-ec4d-44dd-a151-aa8f3c5eee55" alt="Prévia do Site Mila Designer em dispositivos móveis" width="250px">
 </p>
 
-<p align="center">
-  Um site-portfólio elegante e totalmente responsivo, construído com foco 100% na experiência mobile (Mobile First) para uma profissional da área da beleza.
-</p>
+> <p align="center">
+>   Um site-portfólio elegante e totalmente responsivo, construído com foco 100% na experiência mobile (Mobile First) para uma profissional da área da beleza.
+> </p>
 
 <p align="center">
   <a href="https://www.miladesigner.com" target="_blank">
