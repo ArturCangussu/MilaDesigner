@@ -1,6 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-17560121118"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'AW-17560121118');
+</script>
+
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mila Designer</title>
@@ -198,7 +209,7 @@ agendamentoForm.addEventListener('submit', (event) => {
     // Cria a URL do WhatsApp
     const whatsappURL = `https://wa.me/${seuNumero}?text=${mensagemCodificada}`;
 
-    
+    gtag_report_conversion();
     window.open(whatsappURL, '_blank');
 
     
@@ -228,6 +239,21 @@ agendamentoForm.addEventListener('submit', (event) => {
         });
     }
 
+</script>
+
+<script>
+    function gtag_report_conversion(url) {
+        var callback = function () {
+        if (typeof(url) != 'undefined') {
+            window.location = url;
+        }
+        };
+        gtag('event', 'conversion', {
+            'send_to': 'AW-17560121118/nXMOCMgmZabEJ7eqlVB',
+            'event_callback': callback
+        });
+        return false;
+    }
 </script>
 </body>
 </html>
