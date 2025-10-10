@@ -12,6 +12,24 @@
     gtag('config', 'AW-17560121118');
 </script>
 
+    <!-- Event snippet for Reservar horário conversion page
+In your html page, add the snippet and call gtag_report_conversion when someone clicks on the chosen link or button. -->
+<script>
+function gtag_report_conversion(url) {
+  var callback = function () {
+    if (typeof(url) != 'undefined') {
+      window.location = url;
+    }
+  };
+  gtag('event', 'conversion', {
+      'send_to': 'AW-17560121118/nXMuCMqsmZsbEJ7eqLVB',
+      'event_callback': callback
+  });
+  return false;
+}
+</script>
+
+
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mila Designer</title>
@@ -69,10 +87,11 @@ src="https://www.facebook.com/tr?id=2537988803247753&ev=PageView&noscript=1"
 <div class="container hero-content">  
     <img src="images/Logo-3.png" alt="Logo" class="logo" data-aos="zoom-in-down" />
     <h1 class="main-title" data-aos="fade-up" data-aos-delay="200" >✦ Mila Designer ✦</h1>
-
+<!--
     <div class="promo-banner" data-aos="fade-up" data-aos-delay="300">
         💖 Primeira vez aqui? <strong>Ganhe 20% de desconto + Brinde surpresa</strong> no seu atendimento!
     </div>
+    -->
 <div class="button-group" data-aos="fade-up" data-aos-delay="400">
     <button role="button" class="btn btn-primary open-modal-button">
         <i class="fab fa-whatsapp"></i>Agendamento
@@ -226,11 +245,11 @@ agendamentoForm.addEventListener('submit', (event) => {
     const mensagemCodificada = encodeURIComponent(mensagem);
 
     // Cria a URL do WhatsApp
-    const whatsappURL = `https://wa.me/${seuNumero}?text=${mensagemCodificada}`;
+const whatsappURL = `https://wa.me/${seuNumero}?text=${mensagemCodificada}`;
 
-    gtag_report_conversion();
-    fbq('track', 'Lead');
-    window.open(whatsappURL, '_blank');
+
+gtag_report_conversion(whatsappURL); 
+fbq('track', 'Lead');
 
     
     closeModal();
@@ -261,19 +280,6 @@ agendamentoForm.addEventListener('submit', (event) => {
 
 </script>
 
-<script>
-    function gtag_report_conversion(url) {
-        var callback = function () {
-        if (typeof(url) != 'undefined') {
-            window.location = url;
-        }
-        };
-        gtag('event', 'conversion', {
-            'send_to': 'AW-17560121118/nXMOCMgmZabEJ7eqlVB',
-            'event_callback': callback
-        });
-        return false;
-    }
-</script>
+
 </body>
 </html>
