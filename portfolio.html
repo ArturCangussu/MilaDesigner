@@ -2,23 +2,28 @@
 <html lang="pt-BR">
 <head>
 
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17560121118"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'AW-17560121118');
+    </script>
 
-    <!-- Event snippet for Reservar horário conversion page
-In your html page, add the snippet and call gtag_report_conversion when someone clicks on the chosen link or button. -->
-<script>
-function gtag_report_conversion(url) {
-  var callback = function () {
-    if (typeof(url) != 'undefined') {
-      window.location = url;
+    <script>
+    function gtag_report_conversion(url) {
+      var callback = function () {
+        if (typeof(url) != 'undefined') {
+          window.location = url;
+        }
+      };
+      gtag('event', 'conversion', {
+          'send_to': 'AW-17560121118/nXMuCMqsmZsbEJ7eqLVB',
+          'event_callback': callback
+      });
+      return false;
     }
-  };
-  gtag('event', 'conversion', {
-      'send_to': 'AW-17560121118/nXMuCMqsmZsbEJ7eqLVB',
-      'event_callback': callback
-  });
-  return false;
-}
-</script>
+    </script>
 
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -38,46 +43,22 @@ function gtag_report_conversion(url) {
     <link rel="manifest" href="images/site.webmanifest" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
 
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-17560121118">
-</script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'AW-17560121118');
-</script>
-
-    <!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '2537988803247753');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=2537988803247753&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
-
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-17560121118">
-</script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'AW-17560121118');
-</script>
-</head>
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '2537988803247753');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=2537988803247753&ev=PageView&noscript=1"
+    /></noscript>
+    </head>
 <body>
     <header class="services-header">
         <div class="container">
@@ -89,9 +70,19 @@ src="https://www.facebook.com/tr?id=2537988803247753&ev=PageView&noscript=1"
 
 <main class="info-section">
     <div class="container">
+
+        <div class="filter-buttons" data-aos="fade-up">
+            <button class="filter-btn active" data-filter="todos">Todos</button>
+            <button class="filter-btn" data-filter="henna">Design com Henna</button>
+            <button class="filter-btn" data-filter="design">Design Personalizado</button>
+            <button class="filter-btn" data-filter="lamination">Brow Lamination</button>
+            <button class="filter-btn" data-filter="lash">Lash Lifting</button>
+            <button class="filter-btn" data-filter="nutrigloss">Nutrigloss</button>
+        </div>
+
         <div class="portfolio-grid">
 
-            <div class="portfolio-card" data-aos="fade-up">
+            <div class="portfolio-card" data-aos="fade-up" data-category="henna">
                 <picture>
                     <source srcset="images/design s.webp" type="image/webp">
                     <source srcset="images/design s.jpg" type="image/jpeg"> 
@@ -102,77 +93,70 @@ src="https://www.facebook.com/tr?id=2537988803247753&ev=PageView&noscript=1"
                 </div>
             </div>
 
-            <div class="portfolio-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="portfolio-card" data-aos="fade-up" data-aos-delay="100" data-category="henna">
                 <img src="images/Design Com henna teste.webp" alt="Foto do procedimento de Design Com Henna em uma cliente">
                 <div class="portfolio-overlay">
                     <h3 class="portfolio-caption">Design com Henna | Preenchimento Natural e Efeito Ombré</h3>
                 </div>
             </div>
 
-            <div class="portfolio-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="portfolio-card" data-aos="fade-up" data-aos-delay="200" data-category="design">
                 <img src="images/design s.webp" alt="Foto do procedimento Design com Henna em uma cliente">
                 <div class="portfolio-overlay">
                     <h3 class="portfolio-caption">Design Personalizado | Realçando a Beleza Natural</h3>
                 </div>
             </div>
 
-            <div class="portfolio-card" data-aos="fade-up">
+            <div class="portfolio-card" data-aos="fade-up" data-category="design">
                 <img src="images/Design personalizado 1.webp" alt="Foto do procedimento de Design com Henna em uma cliente">
                 <div class="portfolio-overlay">
                     <h3 class="portfolio-caption">Design Personalizado | Realçando a Beleza Natural</h3>
                 </div>
             </div>
             
-            <div class="portfolio-card" data-aos="fade-up">
+            <div class="portfolio-card" data-aos="fade-up" data-category="lamination">
                 <img src="images/Brow lamination 2.webp" alt="Foto do procedimento Brow Lamination em uma cliente">
                 <div class="portfolio-overlay">
                     <h3 class="portfolio-caption">Brow Lamination | Volume e Definição com Naturalidade</h3>
                 </div>
             </div>
 
-            <div class="portfolio-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="portfolio-card" data-aos="fade-up" data-aos-delay="100" data-category="lamination">
                 <img src="images/Brow Lamination 1.webp" alt="Foto do procedimento de Brow Lamination em uma cliente">
                 <div class="portfolio-overlay">
                     <h3 class="portfolio-caption">Brow Lamination | Volume e Definição com Naturalidade</h3>
                 </div>
             </div>
-                <div class="portfolio-card" data-aos="fade-up" data-aos-delay="100">
+
+            <div class="portfolio-card" data-aos="fade-up" data-aos-delay="100" data-category="lash">
                 <img src="images/Lash.jpg" alt="Foto do procedimento de Lash Lifting em uma cliente">
                 <div class="portfolio-overlay">
                     <h3 class="portfolio-caption">Lash Lifting | Volume e Elegância Natural</h3>
                 </div>
-        </div>
+            </div>
 
-
-            <div class="portfolio-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="portfolio-card" data-aos="fade-up" data-aos-delay="200" data-category="nutrigloss">
                 <img src="images/Nutriglossdepois.jpg" alt="Foto do procedimento de Nutrigloss">
                 <div class="portfolio-overlay">
                     <h3 class="portfolio-caption">Nutrigloss | Hidratação Labial</h3>
                 </div>
             </div>
-    </div>
+        </div>
+        
+        <div class="section-divider" data-aos="fade-up"></div>
 
+        <h2 class="section-title" data-aos="fade-up">✦ Depoimentos ✦</h2>
+        
+        <div class="testimonial-grid">
+            <div class="testimonial-card" data-aos="fade-up" data-aos-delay="100">
+                <img src="images/mensagem2.jpg" alt="Depoimento de cliente 1">
+            </div>
+            <div class="testimonial-card" data-aos="fade-up" data-aos-delay="200">
+                <img src="images/mensagem.jpg" alt="Depoimento de cliente 2">
+            </div>
+        </div>
 
-            </div> <div class="section-divider" data-aos="fade-up"></div>
-
-            <h2 class="section-title" data-aos="fade-up">✦ Depoimentos ✦</h2>
-            
-            <div class="testimonial-grid">
-                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="100">
-                    <img src="images/mensagem2.jpg" alt="Depoimento de cliente 1">
-                </div>
-
-                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="200">
-                    <img src="images/mensagem.jpg" alt="Depoimento de cliente 2">
-                </div>
-                
-                <!-- <div class="testimonial-card" data-aos="fade-up" data-aos-delay="300">
-                    <img src="images/depoimento3.jpg" alt="Depoimento de cliente 3">
-                </div> -->
-                
-                </div>
-
-        </div> 
+    </div> 
 </main>
 
     <button class="floating-schedule-button open-modal-button" id="fab-button" role="button">
@@ -191,7 +175,6 @@ src="https://www.facebook.com/tr?id=2537988803247753&ev=PageView&noscript=1"
                     <label for="nome">Seu Nome</label>
                     <input type="text" id="nome" name="nome" placeholder="Digite seu nome" required>
                 </div>
-
                 <div class="form-group">
                     <label for="procedimento">Procedimento Desejado</label>
                     <select id="procedimento" name="procedimento" required>
@@ -203,12 +186,10 @@ src="https://www.facebook.com/tr?id=2537988803247753&ev=PageView&noscript=1"
                         <option value="Nutrigloss">Nutrigloss (R$100,00)</option>
                     </select>
                 </div>
-
                 <div class="form-group">
                     <label for="disponibilidade">Melhor Dia e Horário</label>
                     <input type="text" id="disponibilidade" name="disponibilidade" placeholder="Ex: Quarta à tarde, ou Sábado de manhã">
                 </div>
-
                 <button type="submit" class="btn btn-primary btn-submit">
                     <i class="fab fa-whatsapp"></i>Confirmar Agendamento
                 </button>
@@ -222,6 +203,31 @@ src="https://www.facebook.com/tr?id=2537988803247753&ev=PageView&noscript=1"
     AOS.init({
         duration: 800,
         once: true,
+    });
+
+    // =====================================
+    // LÓGICA DO FILTRO DO PORTFÓLIO (ADICIONADA)
+    // =====================================
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const portfolioCards = document.querySelectorAll('.portfolio-card');
+
+    filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const filter = button.getAttribute('data-filter');
+            
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+
+            portfolioCards.forEach(card => {
+                const cardCategory = card.getAttribute('data-category');
+                
+                if (filter === 'todos' || filter === cardCategory) {
+                    card.classList.remove('hide');
+                } else {
+                    card.classList.add('hide');
+                }
+            });
+        });
     });
 
     // Lógica para mostrar o botão flutuante ao rolar a página (em telas menores)
@@ -238,31 +244,27 @@ src="https://www.facebook.com/tr?id=2537988803247753&ev=PageView&noscript=1"
     }
 
     // =====================================
-    // LÓGICA DO MODAL DE AGENDAMENTO (A PARTE QUE FAZ O BOTÃO FUNCIONAR)
+    // LÓGICA DO MODAL DE AGENDAMENTO
     // =====================================
     const modal = document.getElementById('agendamento-modal');
     const openModalButtons = document.querySelectorAll('.open-modal-button');
     const closeModalButton = document.querySelector('.close-button');
     const agendamentoForm = document.getElementById('agendamento-form');
 
-    // Função para abrir o modal
     const openModal = () => {
         modal.style.display = 'flex';
         document.body.classList.add('modal-open');
     }
 
-    // Função para fechar o modal
     const closeModal = () => {
         modal.style.display = 'none';
         document.body.classList.remove('modal-open');
     }
 
-    // Adiciona o evento de clique a TODOS os botões com a classe 'open-modal-button'
     openModalButtons.forEach(button => {
         button.addEventListener('click', openModal);
     });
 
-    // Eventos para fechar o modal
     closeModalButton.addEventListener('click', closeModal);
     modal.addEventListener('click', (event) => {
         if (event.target === modal) {
@@ -270,7 +272,6 @@ src="https://www.facebook.com/tr?id=2537988803247753&ev=PageView&noscript=1"
         }
     });
 
-    // Lógica do envio do formulário para o WhatsApp
     agendamentoForm.addEventListener('submit', (event) => {
         event.preventDefault(); 
 

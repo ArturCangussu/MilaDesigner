@@ -884,3 +884,46 @@ margin-bottom: 5px;
         grid-template-columns: 1fr 1fr;
     }
 }
+
+
+
+
+
+/* ===================================
+   ESTILOS DOS BOTÕES DE FILTRO
+   =================================== */
+
+.filter-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* <-- A SOLUÇÃO: 2 colunas iguais */
+    gap: 12px; /* Um espaço um pouco maior entre eles */
+    margin-bottom: 30px;
+}
+
+.filter-btn {
+    padding: 12px 10px; /* Ajustei o padding para o texto respirar */
+    font-family: var(--font-main);
+    font-weight: bold;
+    font-size: 14px;
+    color: var(--primary-color);
+    background-color: transparent;
+    border: 2px solid var(--primary-color);
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center; /* Garante que o texto fique no centro */
+}
+
+.filter-btn:hover {
+    background-color: rgba(217, 141, 177, 0.1);
+}
+
+.filter-btn.active {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+/* Classe que vamos usar no JS para esconder os cards */
+.portfolio-card.hide {
+    display: none;
+}
