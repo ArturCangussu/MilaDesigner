@@ -281,12 +281,12 @@ document.addEventListener('DOMContentLoaded', () => {
 // =====================================
 const filterButtons = document.querySelectorAll('.filter-btn');
 const portfolioCards = document.querySelectorAll('.portfolio-card');
-const loadingSpinner = document.getElementById('loading-spinner');
+// const loadingSpinner = document.getElementById('loading-spinner');
 
 filterButtons.forEach(button => {
     button.addEventListener('click', () => {
         // ---> 1. MOSTRA O SPINNER <---
-        loadingSpinner.classList.add('show');
+        // loadingSpinner.classList.add('show');
 
         const filter = button.getAttribute('data-filter');
         filterButtons.forEach(btn => btn.classList.remove('active'));
@@ -310,8 +310,8 @@ filterButtons.forEach(button => {
         setTimeout(() => {
 
             AOS.refresh();
-            
-            loadingSpinner.classList.remove('show');
+
+        //   loadingSpinner.classList.remove('show');
         }, 300); // 300ms (0.3 segundos). Pode até baixar para 200ms.
         
     });
