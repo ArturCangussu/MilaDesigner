@@ -208,8 +208,43 @@
         once: true,
     });
 
-// =====================================
+// =======================================================
+    // NOVO: LÓGICA DE PRÉ-CARREGAMENTO FORÇADO DE IMAGENS
+    // =======================================================
+    // Vamos forçar o download de todas as imagens em segundo plano
+    // assim que a página carregar.
+    document.addEventListener('DOMContentLoaded', () => {
+        const allPortfolioCards = document.querySelectorAll('.portfolio-card');
+        const imagesToPreload = new Set(); // Usamos um Set para evitar duplicatas
+
+        allPortfolioCards.forEach(card => {
+            // Pega a imagem principal
+            const img = card.querySelector('img');
+            if (img && img.src) {
+                imagesToPreload.add(img.src);
+            }
+
+            // Pega também as imagens dentro de <picture> (ex: .webp)
+            const sources = card.querySelectorAll('source');
+            sources.forEach(source => {
+                if (source.srcset) {
+                    imagesToPreload.add(source.srcset);
+                }
+            });
+        });
+
+        // Agora, cria um objeto de imagem temporário para cada URL.
+        // Só de definir o .src, o navegador já começa o download.
+        imagesToPreload.forEach(src => {
+            const tempImage = new Image();
+            tempImage.src = src;
+        });
+    });
+
+
+    // =====================================
     // LÓGICA DO FILTRO DO PORTFÓLIO (COM SPINNER)
+    // (O seu código de filtro que já fizemos, agora vai funcionar rápido)
     // =====================================
     const filterButtons = document.querySelectorAll('.filter-btn');
     const portfolioCards = document.querySelectorAll('.portfolio-card');
@@ -225,7 +260,6 @@
             button.classList.add('active');
 
             // ---> 2. APLICA O FILTRO IMEDIATAMENTE <---
-            // Primeiro, aplicamos as classes 'hide' para saber quem vai ficar visível
             portfolioCards.forEach(card => {
                 const cardCategory = card.getAttribute('data-category');
                 
@@ -237,33 +271,25 @@
             });
 
             // ---> 3. ESPERA AS IMAGENS VISÍVEIS CARREGAREM <---
-            
-            // Pega todos os cards que NÃO estão escondidos
             const visibleCards = document.querySelectorAll('.portfolio-card:not(.hide)');
             
-            // Se não tem nenhum card visível, esconde o spinner e pronto
             if (visibleCards.length === 0) {
                 loadingSpinner.classList.remove('show');
                 return;
             }
 
-            // Cria uma lista de "promessas" de carregamento
             const imageLoadPromises = [];
 
             visibleCards.forEach(card => {
-                // Pega a tag <img> dentro do card
                 const img = card.querySelector('img'); 
                 
                 if (img) {
-                    // Adiciona uma nova promessa para cada imagem
                     imageLoadPromises.push(new Promise((resolve) => {
-                        // Se a imagem já estiver carregada (cache), resolve agora
                         if (img.complete) {
-                            resolve();
+                            resolve(); // Já está no cache (graças ao nosso preload!)
                         } else {
-                            // Se não, espera ela carregar (ou dar erro)
                             img.onload = resolve;
-                            img.onerror = resolve; // Resolve mesmo se der erro, pra não travar o spinner
+                            img.onerror = resolve; 
                         }
                     }));
                 }
