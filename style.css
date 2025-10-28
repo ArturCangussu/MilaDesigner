@@ -972,7 +972,5 @@ margin-bottom: 5px;
 /* =======================================================
    REGRA REFORÇADA PARA ESCONDER CARDS
    ======================================================= */
-.portfolio-grid .portfolio-card.hide {
-    display: none !important;
-}
+
 
