@@ -87,8 +87,8 @@
 
             <div class="portfolio-card" data-aos="fade-up" data-category="henna">
                 <picture>
-                    <source srcset="images/design s.webp" type="image/webp">
-                    <source srcset="images/design s.jpg" type="image/jpeg"> 
+
+
                     <img src="images/Design com Henna.webp" alt="Foto do procedimento de Design Personalizado em uma cliente" >
                 </picture>
                 <div class="portfolio-overlay">
@@ -242,126 +242,137 @@
     });
 
 
-    // =====================================
-    // LÓGICA DO FILTRO DO PORTFÓLIO (COM SPINNER)
-    // (O seu código de filtro que já fizemos, agora vai funcionar rápido)
-    // =====================================
-    const filterButtons = document.querySelectorAll('.filter-btn');
-    const portfolioCards = document.querySelectorAll('.portfolio-card');
-    const loadingSpinner = document.getElementById('loading-spinner');
+// =======================================================
+// NOVO: LÓGICA DE PRÉ-CARREGAMENTO FORÇADO DE IMAGENS
+// =======================================================
+// Vamos forçar o download de todas as imagens em segundo plano
+// assim que a página carregar.
+document.addEventListener('DOMContentLoaded', () => {
+    const allPortfolioCards = document.querySelectorAll('.portfolio-card');
+    const imagesToPreload = new Set(); // Usamos um Set para evitar duplicatas
 
-    filterButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            // ---> 1. MOSTRA O SPINNER <---
-            loadingSpinner.classList.add('show');
+    allPortfolioCards.forEach(card => {
+        // Pega a imagem principal
+        const img = card.querySelector('img');
+        if (img && img.src) {
+            imagesToPreload.add(img.src);
+        }
 
-            const filter = button.getAttribute('data-filter');
-            filterButtons.forEach(btn => btn.classList.remove('active'));
-            button.classList.add('active');
-
-            // ---> 2. APLICA O FILTRO IMEDIATAMENTE <---
-            portfolioCards.forEach(card => {
-                const cardCategory = card.getAttribute('data-category');
-                
-                if (filter === 'todos' || filter === cardCategory) {
-                    card.classList.remove('hide');
-                } else {
-                    card.classList.add('hide');
-                }
-            });
-
-            // ---> 3. ESPERA AS IMAGENS VISÍVEIS CARREGAREM <---
-            const visibleCards = document.querySelectorAll('.portfolio-card:not(.hide)');
-            
-            if (visibleCards.length === 0) {
-                loadingSpinner.classList.remove('show');
-                return;
+        // Pega também as imagens dentro de <picture> (ex: .webp)
+        const sources = card.querySelectorAll('source');
+        sources.forEach(source => {
+            if (source.srcset) {
+                imagesToPreload.add(source.srcset);
             }
-
-            const imageLoadPromises = [];
-
-            visibleCards.forEach(card => {
-                const img = card.querySelector('img'); 
-                
-                if (img) {
-                    imageLoadPromises.push(new Promise((resolve) => {
-                        if (img.complete) {
-                            resolve(); // Já está no cache (graças ao nosso preload!)
-                        } else {
-                            img.onload = resolve;
-                            img.onerror = resolve; 
-                        }
-                    }));
-                }
-            });
-
-            // ---> 4. QUANDO TODAS AS IMAGENS CARREGAREM, ESCONDE O SPINNER <---
-            Promise.all(imageLoadPromises).then(() => {
-                loadingSpinner.classList.remove('show');
-            });
-            
         });
     });
 
-    // Lógica para mostrar o botão flutuante ao rolar a página (em telas menores)
-    if (window.matchMedia("(max-width: 767px)").matches) {
-        const fabButton = document.getElementById('fab-button');
-        const scrollThreshold = 200;
-        window.addEventListener('scroll', function() {
-            if (window.scrollY > scrollThreshold) {
-                fabButton.classList.add('visible');
+    // Agora, cria um objeto de imagem temporário para cada URL.
+    // Só de definir o .src, o navegador já começa o download.
+    imagesToPreload.forEach(src => {
+        const tempImage = new Image();
+        tempImage.src = src;
+    });
+});
+
+
+// =====================================
+// LÓGICA DO FILTRO (VERSÃO CORRIGIDA COM TIMEOUT)
+// =====================================
+const filterButtons = document.querySelectorAll('.filter-btn');
+const portfolioCards = document.querySelectorAll('.portfolio-card');
+const loadingSpinner = document.getElementById('loading-spinner');
+
+filterButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        // ---> 1. MOSTRA O SPINNER <---
+        loadingSpinner.classList.add('show');
+
+        const filter = button.getAttribute('data-filter');
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+
+        // ---> 2. APLICA O FILTRO <---
+        // (Isso é rápido, e a imagem já estará no cache)
+        portfolioCards.forEach(card => {
+            const cardCategory = card.getAttribute('data-category');
+            
+            if (filter === 'todos' || filter === cardCategory) {
+                card.classList.remove('hide');
             } else {
-                fabButton.classList.remove('visible');
+                card.classList.add('hide');
             }
         });
-    }
 
-    // =====================================
-    // LÓGICA DO MODAL DE AGENDAMENTO
-    // =====================================
-    const modal = document.getElementById('agendamento-modal');
-    const openModalButtons = document.querySelectorAll('.open-modal-button');
-    const closeModalButton = document.querySelector('.close-button');
-    const agendamentoForm = document.getElementById('agendamento-form');
-
-    const openModal = () => {
-        modal.style.display = 'flex';
-        document.body.classList.add('modal-open');
-    }
-
-    const closeModal = () => {
-        modal.style.display = 'none';
-        document.body.classList.remove('modal-open');
-    }
-
-    openModalButtons.forEach(button => {
-        button.addEventListener('click', openModal);
+        // ---> 3. ESPERA UM TEMPO FIXO E ESCONDE O SPINNER <---
+        // Já que sabemos que a imagem está no cache, 
+        // 300ms é mais que suficiente para o navegador "piscar" e exibi-la.
+        setTimeout(() => {
+            loadingSpinner.classList.remove('show');
+        }, 300); // 300ms (0.3 segundos). Pode até baixar para 200ms.
+        
     });
+});
 
-    closeModalButton.addEventListener('click', closeModal);
-    modal.addEventListener('click', (event) => {
-        if (event.target === modal) {
-            closeModal();
+// Lógica para mostrar o botão flutuante ao rolar a página (em telas menores)
+if (window.matchMedia("(max-width: 767px)").matches) {
+    const fabButton = document.getElementById('fab-button');
+    const scrollThreshold = 200;
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > scrollThreshold) {
+            fabButton.classList.add('visible');
+        } else {
+            fabButton.classList.remove('visible');
         }
     });
+}
 
-    agendamentoForm.addEventListener('submit', (event) => {
-        event.preventDefault(); 
+// =====================================
+// LÓGICA DO MODAL DE AGENDAMENTO
+// =====================================
+const modal = document.getElementById('agendamento-modal');
+const openModalButtons = document.querySelectorAll('.open-modal-button');
+const closeModalButton = document.querySelector('.close-button');
+const agendamentoForm = document.getElementById('agendamento-form');
 
-        const nome = document.getElementById('nome').value;
-        const procedimento = document.getElementById('procedimento').value;
-        const disponibilidade = document.getElementById('disponibilidade').value;
-        
-        const seuNumero = '5533984255696';
-        const mensagem = `Olá! Gostaria de agendar um horário.\n\n*Nome:* ${nome}\n*Procedimento:* ${procedimento}\n*Disponibilidade:* ${disponibilidade}`;
-        const mensagemCodificada = encodeURIComponent(mensagem);
-        const whatsappURL = `https://wa.me/${seuNumero}?text=${mensagemCodificada}`;
+const openModal = () => {
+    modal.style.display = 'flex';
+    document.body.classList.add('modal-open');
+}
 
-        window.open(whatsappURL, '_blank');
+const closeModal = () => {
+    modal.style.display = 'none';
+    document.body.classList.remove('modal-open');
+}
 
+openModalButtons.forEach(button => {
+    button.addEventListener('click', openModal);
+});
+
+closeModalButton.addEventListener('click', closeModal);
+modal.addEventListener('click', (event) => {
+    if (event.target === modal) {
         closeModal();
-        agendamentoForm.reset();
-    });
-    </script>
+    }
+});
+
+agendamentoForm.addEventListener('submit', (event) => {
+    event.preventDefault(); 
+
+    const nome = document.getElementById('nome').value;
+    const procedimento = document.getElementById('procedimento').value;
+    const disponibilidade = document.getElementById('disponibilidade').value;
+    
+    const seuNumero = '5533984255696';
+    const mensagem = `Olá! Gostaria de agendar um horário.\n\n*Nome:* ${nome}\n*Procedimento:* ${procedimento}\n*Disponibilidade:* ${disponibilidade}`;
+    const mensagemCodificada = encodeURIComponent(mensagem);
+    const whatsappURL = `https://wa.me/${seuNumero}?text=${mensagemCodificada}`;
+
+    window.open(whatsappURL, '_blank');
+
+    closeModal();
+    agendamentoForm.reset();
+});
+ </script>
     </body>
 </html>
