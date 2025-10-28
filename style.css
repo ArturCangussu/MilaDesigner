@@ -653,7 +653,10 @@ body.modal-open {
     grid-template-columns: 1fr; 
     gap: 20px; 
     padding: 20px 0;
+    position: relative;
+    grid-template-columns: 1fr; /* Coluna única no mobile */
 }
+
 
 .portfolio-card {
     position: relative;
@@ -923,36 +926,53 @@ margin-bottom: 5px;
     color: white;
 }
 
-/* Estilo base para transição SUAVE */
-.portfolio-card {
-    /* ... (seus estilos atuais do portfolio-card) ... */
-    transition: opacity 0.3s ease, visibility 0.3s ease; /* Adiciona transição */
-    opacity: 1;
-    visibility: visible;
+
+
+
+/* ===================================
+   ESTILOS DO SPINNER DE CARREGAMENTO
+   =================================== */
+
+.spinner-overlay {
+    display: none; /* Escondido por padrão */
+    position: absolute; /* Para centralizar sobre o grid */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(241, 239, 234, 0.7); /* Fundo semi-transparente (cor do seu --background-light) */
+    z-index: 10; /* Para ficar acima do grid */
+    justify-content: center;
+    align-items: center;
+    min-height: 150px; /* Altura mínima para ser visível mesmo se o grid estiver vazio temporariamente */
 }
 
-/* Nova regra para ESCONDER o card */
-.portfolio-card.hide {
-    opacity: 0;
-    visibility: hidden;
-    position: absolute; /* Tira do fluxo normal para evitar espaços vazios extras */
-    z-index: -1; /* Garante que não interfira com cliques */
-    pointer-events: none; /* Garante que não seja clicável */
-    /* Removemos o display: none; */
+/* Classe para MOSTRAR o overlay */
+.spinner-overlay.show {
+    display: flex; /* Mudamos para flex para centralizar o spinner */
 }
 
-/* Pequeno ajuste no grid para lidar com itens escondidos */
-.portfolio-grid {
-    display: grid;
-    grid-template-columns: 1fr; 
-    gap: 20px; 
-    padding: 20px 0;
-    position: relative; /* Necessário para o position absolute dos itens escondidos */
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid rgba(217, 141, 177, 0.2); /* Cor primária com opacidade */
+    border-top-color: var(--primary-color); /* Cor primária sólida no topo */
+    border-radius: 50%;
+    animation: spin 1s linear infinite; /* Animação de rotação */
 }
 
-/* Ajuste para desktop continua o mesmo */
-@media (min-width: 600px) {
-    .portfolio-grid {
-        grid-template-columns: 1fr 1fr;
+/* Animação de rotação */
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
     }
 }
+
+
+/* =======================================================
+   REGRA REFORÇADA PARA ESCONDER CARDS
+   ======================================================= */
+.portfolio-grid .portfolio-card.hide {
+    display: none !important;
+}
+
