@@ -193,7 +193,7 @@ body {
     background-position: 100% top;
   }
 
-  .hero-shape img {
+  .hero-shape svg {
     height: 60px;
     width: calc(200% + 1.3px);
   }
@@ -326,12 +326,7 @@ body {
 
 
 
-/* Ajuste para telas maiores (desktop) */
-@media (min-width: 768px) {
-  .services-list {
-    grid-template-columns: 1fr 1fr; /* 2 colunas em telas maiores */
-  }
-}
+
 
 
 .btn::after {
@@ -369,10 +364,7 @@ body {
  }
 }
 
-.sub-title {
-        font-size: 22px; /* Aumenta o tamanho da fonte */
-        line-height: 30px; /* Ajusta a altura da linha para a nova fonte */
-}
+
 /* Ajuste para telas maiores (desktop) */
 @media (min-width: 768px) {
  .services-list {
@@ -482,10 +474,7 @@ body {
     }
 }
 
-.modal-overlay {
-    display: none; 
-    /* Escondido por padrão */
-}
+
 /* =========================================
    BOTÃO DE AGENDAMENTO FLUTUANTE (FAB)
    ========================================= */
@@ -658,27 +647,6 @@ body.modal-open {
 }
 
 
-.portfolio-card {
-    position: relative;
-    border-radius: 14px;
-    overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    background-color: #fff;
-    padding: 10px;
-    border-bottom: 5px solid var(--primary-color);
-    aspect-ratio: 4 / 5; 
-    display: flex;
-    flex-direction: column;
-}
-
-.portfolio-card picture, .portfolio-card img {
-    display: block;
-    width: 100%;
-    height: 100%; 
-    object-fit: cover; 
-    border-radius: 6px; 
-    flex-grow: 1; 
-}
 
 .portfolio-overlay {
 position: absolute;
