@@ -923,7 +923,36 @@ margin-bottom: 5px;
     color: white;
 }
 
-/* Classe que vamos usar no JS para esconder os cards */
+/* Estilo base para transição SUAVE */
+.portfolio-card {
+    /* ... (seus estilos atuais do portfolio-card) ... */
+    transition: opacity 0.3s ease, visibility 0.3s ease; /* Adiciona transição */
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Nova regra para ESCONDER o card */
 .portfolio-card.hide {
-    display: none;
+    opacity: 0;
+    visibility: hidden;
+    position: absolute; /* Tira do fluxo normal para evitar espaços vazios extras */
+    z-index: -1; /* Garante que não interfira com cliques */
+    pointer-events: none; /* Garante que não seja clicável */
+    /* Removemos o display: none; */
+}
+
+/* Pequeno ajuste no grid para lidar com itens escondidos */
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: 1fr; 
+    gap: 20px; 
+    padding: 20px 0;
+    position: relative; /* Necessário para o position absolute dos itens escondidos */
+}
+
+/* Ajuste para desktop continua o mesmo */
+@media (min-width: 600px) {
+    .portfolio-grid {
+        grid-template-columns: 1fr 1fr;
+    }
 }
