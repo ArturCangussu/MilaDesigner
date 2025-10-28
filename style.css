@@ -923,40 +923,36 @@ margin-bottom: 5px;
     color: white;
 }
 
+/* Estilo base para transição SUAVE */
 .portfolio-card {
-    position: relative;
-    border-radius: 14px;
-    overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    background-color: #fff;
-    padding: 10px;
-    border-bottom: 5px solid var(--primary-color);
-    aspect-ratio: 4 / 5; 
-    display: flex;
-    flex-direction: column;
-    /* Certifique-se de que não há 'transition', 'opacity' ou 'visibility' aqui */
+    /* ... (seus estilos atuais do portfolio-card) ... */
+    transition: opacity 0.3s ease, visibility 0.3s ease; /* Adiciona transição */
+    opacity: 1;
+    visibility: visible;
 }
 
-/* Regra para ESCONDER o card (voltamos ao display: none) */
+/* Nova regra para ESCONDER o card */
 .portfolio-card.hide {
-    display: none;
+    opacity: 0;
+    visibility: hidden;
+    position: absolute; /* Tira do fluxo normal para evitar espaços vazios extras */
+    z-index: -1; /* Garante que não interfira com cliques */
+    pointer-events: none; /* Garante que não seja clicável */
+    /* Removemos o display: none; */
 }
 
-/* Estilo do Grid (sem position: relative) */
+/* Pequeno ajuste no grid para lidar com itens escondidos */
 .portfolio-grid {
     display: grid;
-    grid-template-columns: 1fr; /* 1 coluna mobile */
+    grid-template-columns: 1fr; 
     gap: 20px; 
     padding: 20px 0;
-    /* Certifique-se de que NÃO HÁ 'position: relative;' aqui */
+    position: relative; /* Necessário para o position absolute dos itens escondidos */
 }
 
-/* Ajuste para telas maiores (mantém 2 colunas) */
+/* Ajuste para desktop continua o mesmo */
 @media (min-width: 600px) {
     .portfolio-grid {
         grid-template-columns: 1fr 1fr;
     }
 }
-
-/* Os estilos das imagens dentro do card (.portfolio-card picture, .portfolio-card img) 
-   e da legenda (.portfolio-overlay, .portfolio-caption) continuam os mesmos */
