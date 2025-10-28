@@ -83,7 +83,7 @@
         <div id="loading-spinner" class="spinner-overlay">
         <div class="spinner"></div>
         </div>
-        <div class="portfolio-grid">
+        <div id="galeria-portfolio" class="portfolio-grid">
 
             <div class="portfolio-card" data-aos="fade-up" data-category="henna">
                 <picture>
@@ -149,7 +149,7 @@
         <div class="section-divider" data-aos="fade-up"></div>
 
         <h2 class="section-title" data-aos="fade-up">✦ Depoimentos ✦</h2>
-        
+        <p class="swipe-hint" data-aos="fade-up">Arraste para o lado para ver mais</p>
         <div class="testimonial-grid">
             <div class="testimonial-card" data-aos="fade-up" data-aos-delay="100">
                 <img src="images/mensagem2.jpg" alt="Depoimento de cliente 1" >
@@ -304,9 +304,10 @@ filterButtons.forEach(button => {
             }
         });
 
-        // ---> 3. ESPERA UM TEMPO FIXO E ESCONDE O SPINNER <---
-        // Já que sabemos que a imagem está no cache, 
-        // 300ms é mais que suficiente para o navegador "piscar" e exibi-la.
+        const galeria = document.getElementById("galeria-portfolio");
+        if (galeria) {
+        galeria.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
         setTimeout(() => {
 
             AOS.refresh();

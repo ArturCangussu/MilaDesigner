@@ -826,28 +826,44 @@ margin-bottom: 5px;
 }
 
 .testimonial-grid {
-    display: grid;
-    grid-template-columns: 1fr; /* 1 coluna no mobile, que é a prioridade */
-    gap: 25px; /* Espaço entre os depoimentos */
-    margin-top: 30px;
-    margin-bottom: 50px; /* Espaço extra no final da página */
+    display: flex; /* Muda de 'grid' para 'flex' */
+    overflow-x: auto; /* A MÁGICA: Permite rolar horizontalmente */
+    
+    /* "Trava" o card no lugar após o swipe */
+    scroll-snap-type: x mandatory; 
+    
+    gap: 20px;
+    padding: 10px 20px; /* Adiciona um padding lateral */
+    margin: 30px -20px 50px -20px; /* Faz "sangrar" para as bordas */
 }
 
 .testimonial-card {
+    /* Define o tamanho de cada card */
+    flex: 0 0 85%; /* Cada card ocupa 85% da largura da tela */
+    
+    /* Alinha o card "travado" no centro */
+    scroll-snap-align: center; 
+    
+    /* O resto do seu estilo (sombra, borda, etc) continua igual */
     border-radius: 14px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-    overflow: hidden; /* Garante que a imagem não passe da borda */
+    overflow: hidden;
     transition: transform 0.3s ease;
 }
 
 .testimonial-card:hover {
-    transform: translateY(-5px); /* Efeito sutil no computador */
+    transform: none; 
 }
 
 .testimonial-card img {
     display: block;
     width: 100%;
     height: auto;
+}
+
+/* (Opcional) Esconde a barra de rolagem horizontal */
+.testimonial-grid::-webkit-scrollbar {
+    display: none;
 }
 
 @media (min-width: 768px) {
@@ -944,3 +960,15 @@ margin-bottom: 5px;
     display: none !important;
 }
 
+
+
+.swipe-hint {
+    text-align: center;
+    font-size: 14px;
+    font-style: italic; /* Deixa com um ar de "dica" */
+    color: #c097aa; /* Um cinza sutil que não chama mais atenção que o título */
+    margin-top: -15px; /* Puxa para mais perto do título */
+    margin-bottom: 30px; /* Dá espaço antes do carrossel começar */
+    position: relative;
+    right: 12px; 
+}
