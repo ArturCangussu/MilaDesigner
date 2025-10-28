@@ -213,7 +213,7 @@
     // =====================================
     const filterButtons = document.querySelectorAll('.filter-btn');
     const portfolioCards = document.querySelectorAll('.portfolio-card');
-    const loadingSpinner = document.getElementById('loading-spinner'); // Pega o elemento do spinner
+    const loadingSpinner = document.getElementById('loading-spinner');
 
     filterButtons.forEach(button => {
         button.addEventListener('click', () => {
@@ -224,21 +224,56 @@
             filterButtons.forEach(btn => btn.classList.remove('active'));
             button.classList.add('active');
 
-            // Usamos setTimeout para dar tempo do spinner aparecer antes de processar
-            setTimeout(() => {
-                portfolioCards.forEach(card => {
-                    const cardCategory = card.getAttribute('data-category');
-                    
-                    if (filter === 'todos' || filter === cardCategory) {
-                        card.classList.remove('hide');
-                    } else {
-                        card.classList.add('hide');
-                    }
-                });
+            // ---> 2. APLICA O FILTRO IMEDIATAMENTE <---
+            // Primeiro, aplicamos as classes 'hide' para saber quem vai ficar visível
+            portfolioCards.forEach(card => {
+                const cardCategory = card.getAttribute('data-category');
+                
+                if (filter === 'todos' || filter === cardCategory) {
+                    card.classList.remove('hide');
+                } else {
+                    card.classList.add('hide');
+                }
+            });
 
-                // ---> 2. ESCONDE O SPINNER <---
+            // ---> 3. ESPERA AS IMAGENS VISÍVEIS CARREGAREM <---
+            
+            // Pega todos os cards que NÃO estão escondidos
+            const visibleCards = document.querySelectorAll('.portfolio-card:not(.hide)');
+            
+            // Se não tem nenhum card visível, esconde o spinner e pronto
+            if (visibleCards.length === 0) {
                 loadingSpinner.classList.remove('show');
-            }, 50); // Um pequeno delay (50 milissegundos) é suficiente
+                return;
+            }
+
+            // Cria uma lista de "promessas" de carregamento
+            const imageLoadPromises = [];
+
+            visibleCards.forEach(card => {
+                // Pega a tag <img> dentro do card
+                const img = card.querySelector('img'); 
+                
+                if (img) {
+                    // Adiciona uma nova promessa para cada imagem
+                    imageLoadPromises.push(new Promise((resolve) => {
+                        // Se a imagem já estiver carregada (cache), resolve agora
+                        if (img.complete) {
+                            resolve();
+                        } else {
+                            // Se não, espera ela carregar (ou dar erro)
+                            img.onload = resolve;
+                            img.onerror = resolve; // Resolve mesmo se der erro, pra não travar o spinner
+                        }
+                    }));
+                }
+            });
+
+            // ---> 4. QUANDO TODAS AS IMAGENS CARREGAREM, ESCONDE O SPINNER <---
+            Promise.all(imageLoadPromises).then(() => {
+                loadingSpinner.classList.remove('show');
+            });
+            
         });
     });
 
