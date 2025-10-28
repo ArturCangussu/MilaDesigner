@@ -308,6 +308,9 @@ filterButtons.forEach(button => {
         // Já que sabemos que a imagem está no cache, 
         // 300ms é mais que suficiente para o navegador "piscar" e exibi-la.
         setTimeout(() => {
+
+            AOS.refresh();
+            
             loadingSpinner.classList.remove('show');
         }, 300); // 300ms (0.3 segundos). Pode até baixar para 200ms.
         
