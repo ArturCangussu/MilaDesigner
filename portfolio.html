@@ -10,20 +10,7 @@
         gtag('config', 'AW-17560121118');
     </script>
 
-    <script>
-    function gtag_report_conversion(url) {
-      var callback = function () {
-        if (typeof(url) != 'undefined') {
-          window.location = url;
-        }
-      };
-      gtag('event', 'conversion', {
-          'send_to': 'AW-17560121118/nXMuCMqsmZsbEJ7eqLVB',
-          'event_callback': callback
-      });
-      return false;
-    }
-    </script>
+
 
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -58,6 +45,22 @@
     <noscript><img height="1" width="1" style="display:none"
     src="https://www.facebook.com/tr?id=2537988803247753&ev=PageView&noscript=1"
     /></noscript>
+
+    <script>
+function gtag_report_conversion(url) {
+  var callback = function () {
+    if (typeof(url) != 'undefined') {
+      window.location = url;
+    }
+  };
+  gtag('event', 'conversion', {
+      'send_to': 'AW-17560121118/Ww7xCN7llLYbEJ7eqLVB',
+      'transaction_id': '', // Pode deixar vazio
+      'event_callback': callback
+  });
+  return false;
+}
+</script>
     </head>
 <body>
     <header class="services-header">
@@ -372,8 +375,11 @@ agendamentoForm.addEventListener('submit', (event) => {
     const mensagemCodificada = encodeURIComponent(mensagem);
     const whatsappURL = `https://wa.me/${seuNumero}?text=${mensagemCodificada}`;
 
-    window.open(whatsappURL, '_blank');
+// PRIMEIRO, avisa o Google Ads e passa a URL para ele redirecionar DEPOIS
+gtag_report_conversion(whatsappURL);
 
+// SEGUNDO, avisa o Pixel da Meta (se quiser rastrear como Lead também)
+fbq('track', 'Lead');
     closeModal();
     agendamentoForm.reset();
 });

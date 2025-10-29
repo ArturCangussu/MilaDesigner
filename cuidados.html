@@ -1,22 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<!-- Event snippet for Reservar horário conversion page
-In your html page, add the snippet and call gtag_report_conversion when someone clicks on the chosen link or button. -->
-<script>
-function gtag_report_conversion(url) {
-  var callback = function () {
-    if (typeof(url) != 'undefined') {
-      window.location = url;
-    }
-  };
-  gtag('event', 'conversion', {
-      'send_to': 'AW-17560121118/nXMuCMqsmZsbEJ7eqLVB',
-      'event_callback': callback
-  });
-  return false;
-}
-</script>
+
 
 
 
@@ -66,6 +51,22 @@ fbq('track', 'PageView');
 src="https://www.facebook.com/tr?id=2537988803247753&ev=PageView&noscript=1"
 /></noscript>
 <!-- End Meta Pixel Code -->
+
+<script>
+function gtag_report_conversion(url) {
+  var callback = function () {
+    if (typeof(url) != 'undefined') {
+      window.location = url;
+    }
+  };
+  gtag('event', 'conversion', {
+      'send_to': 'AW-17560121118/Ww7xCN7llLYbEJ7eqLVB',
+      'transaction_id': '', // Pode deixar vazio
+      'event_callback': callback
+  });
+  return false;
+}
+</script>
 </head>
 <body>
     <header class="services-header">
@@ -227,8 +228,11 @@ src="https://www.facebook.com/tr?id=2537988803247753&ev=PageView&noscript=1"
         const mensagemCodificada = encodeURIComponent(mensagem);
         const whatsappURL = `https://wa.me/${seuNumero}?text=${mensagemCodificada}`;
 
-        window.open(whatsappURL, '_blank');
+// PRIMEIRO, avisa o Google Ads e passa a URL para ele redirecionar DEPOIS
+gtag_report_conversion(whatsappURL);
 
+// SEGUNDO, avisa o Pixel da Meta (se quiser rastrear como Lead também)
+fbq('track', 'Lead');
         closeModal();
         agendamentoForm.reset();
     });

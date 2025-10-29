@@ -14,20 +14,6 @@
 
     <!-- Event snippet for Reservar horário conversion page
 In your html page, add the snippet and call gtag_report_conversion when someone clicks on the chosen link or button. -->
-<script>
-function gtag_report_conversion(url) {
-  var callback = function () {
-    if (typeof(url) != 'undefined') {
-      window.location = url;
-    }
-  };
-  gtag('event', 'conversion', {
-      'send_to': 'AW-17560121118/nXMuCMqsmZsbEJ7eqLVB',
-      'event_callback': callback
-  });
-  return false;
-}
-</script>
 
 
     <meta charset="UTF-8" />
@@ -66,6 +52,23 @@ fbq('track', 'PageView');
 src="https://www.facebook.com/tr?id=2537988803247753&ev=PageView&noscript=1"
 /></noscript>
 <!-- End Meta Pixel Code -->
+
+
+<script>
+function gtag_report_conversion(url) {
+  var callback = function () {
+    if (typeof(url) != 'undefined') {
+      window.location = url;
+    }
+  };
+  gtag('event', 'conversion', {
+      'send_to': 'AW-17560121118/Ww7xCN7llLYbEJ7eqLVB',
+      'transaction_id': '', // Pode deixar vazio
+      'event_callback': callback
+  });
+  return false;
+}
+</script>
 </head>
   <body>
     <main>
@@ -184,7 +187,7 @@ src="https://www.facebook.com/tr?id=2537988803247753&ev=PageView&noscript=1"
                 <input type="text" id="disponibilidade" name="disponibilidade" placeholder="Ex: Quarta à tarde, ou Sábado de manhã">
             </div>
 
-            <button type="submit" class="btn btn-primary btn-submit">
+            <button type="submit" class="btn btn-primary btn-submit" >
                 <i class="fab fa-whatsapp"></i>Confirmar Agendamento
             </button>
         </form>
