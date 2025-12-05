@@ -1,8 +1,11 @@
 /* Definição de variáveis e estilos globais */
 :root {
-  --text-color: #543618; 
-  --primary-color: #F1C3B3; 
-  --background-light: #F1EFEA; 
+  --text-dark: #3E2723;       /* Marrom café bem escuro */
+  --primary-brown: #6A4A3C;   /* O marrom médio dos botões */
+  --accent-gold: #E0C68E;     /* Dourado para substituir o rosa */
+  --bg-cream: #F2F0E9;        /* O fundo creme da sua tela nova */
+  --btn-light-bg: #D7C0A9;    /* O fundo bege dos botões claros */
+  
   --font-main: "Palanquin", sans-serif;
   --font-title: "Philosopher", sans-serif;
 }
@@ -10,8 +13,8 @@
 body {
   margin: 0;
   font-family: var(--font-main);
-  color: var(--text-color);
-  background-color: #fff;
+  color: var(--text-dark);
+  background-color: var(--bg-cream); /* Garante que o site todo tenha esse fundo nude */
   font-size: 15.5px;
   line-height: 24.8px;
   overflow-x: hidden;
@@ -31,14 +34,16 @@ body {
 /* Seção Hero (Banner Principal) */
 .hero-section {
   position: relative;
-  /* padding: 150px 50px 80px 40px; */
-  /*background-image: ;*/
+  
+  /* Adicione/Ajuste esta linha aqui: */
+  padding-bottom: 80px; /* Isso cria um espaço grande embaixo dos botões antes da onda começar */
+  
+  /* ... mantenha o resto das configurações (background, etc) ... */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   text-align: center;
 }
-
 /* Cor escurecida na parte superior do site, como um óculos de sol */
 .hero-overlay {
   position: absolute;
@@ -71,8 +76,7 @@ body {
 
 /* COR DA ONDA  */
 .hero-shape .shape-fill {
-    fill: #E6DCCB;
-    opacity: 0.65;
+    fill: #2c1e16;
 }
 
 .hero-content {
@@ -114,43 +118,61 @@ font-family: 'Playfair Display', serif;
 /* Estilos de Botões */
 .btn {
   position: relative;
-  display: inline-block;
-  padding: 17px 50px;
-  border-radius: 14px;
-  border: 2px solid transparent;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px 30px;
+  border-radius: 50px; /* Borda bem redonda igual ao print */
+  border: 1px solid transparent;
   text-transform: uppercase;
   text-decoration: none;
-  font-weight: bold;
-  letter-spacing: 1px;
+  font-weight: 600;
+  letter-spacing: 1.5px; /* Espaçamento chique entre letras */
   width: 100%;
   box-sizing: border-box;
-  margin-top: 20px;
-  display: inline-flex; /* Transforma o botão em um container flex */
-  align-items: center;  /* Alinha o ícone e o texto no centro verticalmente */
+  margin-top: 15px;
   transition: all 0.3s ease;
   cursor: pointer;
-  font-family: inherit;
-  font-size: inherit;
+  font-family: var(--font-main);
+  font-size: 14px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1); /* Sombra suave */
 }
 
+/* Botão Principal (Igual aos 2 primeiros do print: Bege escuro com texto escuro) */
 .btn-primary {
-  /*background-color: var(--primary-color);*/
-  border-color: #E0C68E;
- /* color: #F1EFEA;*/
- background-color: #CBB29A;
- color: #4B2E19;
+  background-color: #C6A992; /* Tom Cappuccino */
+  color: #2c1e16;
+  border: 1px solid #C6A992;
 }
 
+.btn-primary:hover {
+  background-color: #bfa085;
+  transform: translateY(-2px);
+}
+
+/* Botão Secundário (Igual ao último do print: Marrom escuro) */
 .btn-secondary {
-  background-color: #CBB29A;
-  border-color: #E0C68E;
-  color: #4B2E19;
+  background-color: #4A3228; /* Café */
+  color: #F2F0E9; /* Texto claro */
+  border: 1px solid #5D4033;
 }
 
+.btn-secondary:hover {
+  background-color: #3E2920;
+  border-color: var(--accent-gold); /* Brilho dourado ao passar o mouse */
+}
+
+/* Botão Outline (Para usar na seção escura se precisar de variação) */
 .btn-outline {
-  background-color: #86511c;
-  border-color: #E0C68E;
-  color: white;
+  background-color: var(--accent-gold); /* O creme bonito (#E0C68E) */
+  color: #2c1e16; /* Letra marrom escuro (café) para dar leitura */
+  border: 1px solid var(--accent-gold);
+}
+
+/* Efeito ao passar o mouse (opcional: fica levemente mais claro ou escuro) */
+.btn-outline:hover {
+  filter: brightness(0.95); /* Escurece só um pouquinho para dar sensação de clique */
+  transform: translateY(-2px); /* O pulinho clássico */
 }
 
 /* Estilo para os ícones dentro dos botões */
@@ -161,9 +183,14 @@ font-family: 'Playfair Display', serif;
 
 /* Seção de Informações */
 .info-section {
-  padding: 30px;
-  background-color: #FAF9F6
-
+  padding: 50px 30px; /* Aumentei um pouco o respiro */
+  background-color: #2c1e16; /* Um marrom quase preto, muito chique */
+  color: var(--bg-cream); /* Texto geral claro */
+  border: none !important; 
+  outline: none !important;
+  margin-top: -2px;  /* Puxa a seção pra cima para tampar o buraco */
+  position: relative; /* Garante que ela fique por cima se precisar */
+  z-index: 10;
 }
 
 .info-columns {
@@ -180,19 +207,21 @@ font-family: 'Playfair Display', serif;
 
 .section-title {
   font-family: var(--font-title);
-  color: #b12a88b9;
-  font-size: 34px;
-  line-height: 42px;
+  color: var(--accent-gold); /* Substituímos o ROSA (#b12a88b9) pelo DOURADO */
+  font-size: 36px;
+  line-height: 44px;
   margin-bottom: 20px;
+  text-transform: capitalize; /* Deixa a primeira letra maiúscula elegante */
 }
 
 .sub-title {
-  font-family: var(--font-title);
-  color: #D98DB1;
-  font-size: 18.24px;
-  line-height: 27.36px;
-  margin-top: 50px;
-  margin-bottom: 20px;
+  font-family: var(--font-main);
+  color: #D7C0A9; /* Um bege suave, substituindo o rosa antigo */
+  font-size: 18px;
+  line-height: 1.6;
+  font-weight: 300;
+  margin-top: 10px;
+  margin-bottom: 30px;
 }
 
 /* Estilos para telas maiores (Desktop) - o que era `md:` */
