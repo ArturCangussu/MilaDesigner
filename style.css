@@ -181,6 +181,27 @@ font-family: 'Playfair Display', serif;
   font-size: 20px;
 }
 
+.info-bottom-wave {
+    position: absolute;
+    bottom: -1px; /* Garante que cole lá embaixo sem fresta */
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    /* Inverti a escala horizontal para a curva ficar diferente da do topo */
+    transform: scaleX(-1); 
+}
+
+.info-bottom-wave svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 70px; /* Altura da onda */
+}
+
+.info-bottom-wave .shape-fill {
+    fill: var(--bg-cream); /* AQUI ESTÁ O TRUQUE: Cor do fundo da próxima seção */
+}
 /* Seção de Informações */
 .info-section {
   padding: 50px 30px; /* Aumentei um pouco o respiro */
@@ -291,23 +312,39 @@ font-family: 'Playfair Display', serif;
 
 /* Cabeçalho da página de serviços */
 .services-header {
-  background-color: #746774; /* Mesmo fundo escuro da home */
-  color: white;
+  background-color: #2c1e16; /* O mesmo Café Escuro da Home */
+  color: var(--bg-cream);
   text-align: center;
-  padding: 60px 20px;
+  padding: 100px 20px 60px 20px; /* Mais espaçamento para elegância */
+  border-bottom: 1px solid var(--accent-gold); /* Uma linha fina de ouro para finalizar */
 }
 
 .services-header .section-title {
-  color: var(--primary-color);
-  margin-bottom: 10px;
+  font-family: 'Playfair Display', serif; /* Fonte Chique */
+  color: var(--accent-gold); /* Dourado */
+  font-size: 42px;
+  margin-bottom: 15px;
 }
 
 .services-header .header-subtitle {
-  font-family: var(--font-main);
-  font-size: 18px;
-  color: var(--background-light);
+  font-family: 'Cormorant Garamond', serif; /* Fonte Editorial */
+  font-size: 20px;
+  color: #D7C0A9; /* Bege suave */
   margin-top: 0;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+}
+
+/* Ajuste do botão "Voltar" para combinar com o fundo escuro */
+.services-header .btn-outline {
+    background-color: transparent;
+    border: 1px solid var(--accent-gold);
+    color: var(--accent-gold);
+}
+.services-header .btn-outline:hover {
+    background-color: var(--accent-gold);
+    color: #2c1e16;
 }
 
 /* Lista que organiza os cards de serviço */
@@ -533,36 +570,71 @@ font-family: 'Playfair Display', serif;
 /* ======================================================= */
 
 .floating-schedule-button {
-    display: flex;
+    /* Exibir flex para alinhar ícone e texto */
+    display: flex; 
     align-items: center;
     justify-content: center;
-    gap: 10px;
+    gap: 8px; /* Espaço entre ícone e texto */
+    
+    /* Posição Fixa */
     position: fixed;
     bottom: 25px;
     right: 25px;
     z-index: 1000;
-    background-color: var(--primary-color);
-    color: rgb(255, 255, 255);
+    
+    /* A ESTÉTICA DE OURO */
+    background: linear-gradient(135deg, #F0D59D 0%, #C6A992 100%); /* Gradiente Ouro Champagne */
+    color: #3E2723; /* Texto Café Escuro (Leitura perfeita no dourado) */
+    
+    /* Tipografia Elegante */
     font-family: var(--font-main);
-    font-weight: bold;
+    font-weight: 800; /* Extra bold para ler bem pequeno */
+    text-transform: uppercase;
     text-decoration: none;
-    font-size: 17px;
-    padding: 15px 35px;
+    font-size: 13px;
+    letter-spacing: 1px;
+    
+    /* Forma e Tamanho */
+    padding: 14px 30px;
     border-radius: 50px;
-    border: none;
-    cursor: pointer;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    
+    /* O SEGREDO DO DESTAQUE (Borda + Sombra) */
+    border: 2px solid #FDFBF7; /* Borda quase branca para "cortar" o fundo escuro */
+    box-shadow: 
+        0 4px 15px rgba(0, 0, 0, 0.2), /* Sombra preta suave para profundidade */
+        0 0 0 4px rgba(224, 198, 142, 0.2); /* Um "brilho" dourado transparente em volta */
+    
+    /* Animação de entrada */
     opacity: 0;
     transform: translateY(100px);
-    transition: opacity 0.4s ease, transform 0.4s ease;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     
-    /* ---- A LINHA MÁGICA ESTÁ AQUI ---- */
+    cursor: pointer;
     -webkit-tap-highlight-color: transparent;
 }
 
+/* Ícone do WhatsApp um pouco maior */
+.floating-schedule-button i {
+    font-size: 18px;
+}
+
+/* Estado Visível (controlado pelo JS) */
 .floating-schedule-button.visible {
     opacity: 1;
     transform: translateY(0);
+}
+
+/* Efeito de clique */
+.floating-schedule-button:active {
+    transform: scale(0.95); /* Encolhe levemente ao tocar */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+/* Regra para garantir que apareça apenas no mobile/telas menores se desejar */
+@media (min-width: 768px) {
+    .floating-schedule-button {
+        display: none; /* Se quiser esconder no PC, mantenha isso. Se quiser mostrar sempre, apague essa media query */
+    }
 }
 
 #fab-button:focus,
@@ -678,62 +750,45 @@ body.modal-open {
 
 
 /* ==================================================
-   ESTILOS DA PÁGINA DE PORTFÓLIO (MOBILE-FIRST)
+   ESTILOS DA PÁGINA DE PORTFÓLIO (MOBILE-FIRST & LUXO)
    ================================================== */
 
 .portfolio-grid {
     display: grid;
     grid-template-columns: 1fr; 
-    gap: 20px; 
+    gap: 25px; /* Mais espaço para respirar */
     padding: 20px 0;
-    position: relative;
-    grid-template-columns: 1fr; /* Coluna única no mobile */
 }
 
-
-
-.portfolio-overlay {
-position: absolute;
-bottom: 0;
-left: 0;
-width: 100%;
-background: linear-gradient(to top, rgba(233, 143, 221, 0.85) 0%, transparent 50%); 
-padding: 15px 20px; 
-box-sizing: border-box;
-display: flex;
-align-items: flex-end; 
-}
-
-.portfolio-caption {
-font-family: var(--font-title);
-color: white;
-font-size: 20px; 
-line-height: 1.2;
-text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
-margin-bottom: 5px; 
-}
-
-
-@media (min-width: 600px) {
+@media (min-width: 768px) {
     .portfolio-grid {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: repeat(2, 1fr); /* 2 colunas no PC */
     }
 }
 
-
-
-
+/* CARD LUXO (BRANCO) */
 .portfolio-card {
     position: relative;
-    border-radius: 14px;
+    border-radius: 8px; /* Cantos elegantes */
     overflow: hidden;
-    box-shadow: 0 4px 12px rgba(131, 130, 130, 0.08);
-    background-color: #ecbed4;
-    padding: 10px;
-    border-bottom: 5px #fff;
+    
+    /* FUNDO BRANCO E LIMPO */
+    background-color: #fff; 
+    
+    /* Sombra marrom suave */
+    box-shadow: 0 10px 30px rgba(62, 39, 35, 0.08); 
+    border: 1px solid rgba(106, 74, 60, 0.1); 
+    
+    padding: 0; /* SEM PADDING: A foto encosta na borda */
     aspect-ratio: 4 / 5; 
     display: flex;
     flex-direction: column;
+    transition: transform 0.3s ease;
+}
+
+.portfolio-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(62, 39, 35, 0.15); 
 }
 
 .portfolio-card picture, .portfolio-card img {
@@ -741,28 +796,52 @@ margin-bottom: 5px;
     width: 100%;
     height: 100%; 
     object-fit: cover; 
-    border-radius: 6px; 
-    flex-grow: 1; 
+    border-radius: 0; /* Remove raio interno */
 }
 
+/* O GRADIENTE ESCURO (Para ler o texto) */
+.portfolio-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    /* Gradiente Marrom Café chique */
+    background: linear-gradient(to top, rgba(44, 30, 22, 0.95) 0%, rgba(44, 30, 22, 0.6) 40%, transparent 100%); 
+    padding: 20px 20px; 
+    box-sizing: border-box;
+    display: flex;
+    align-items: flex-end; 
+    opacity: 1;
+}
 
+.portfolio-caption {
+    font-family: 'Cormorant Garamond', serif; /* Fonte Chique */
+    color: var(--accent-gold); /* Texto Dourado */
+    font-size: 24px; 
+    line-height: 1.1;
+    font-weight: 600;
+    text-shadow: none; 
+    margin-bottom: 5px; 
+}
+
+/* Banner Promocional (Opcional, ajustado para tons terrosos) */
 .promo-banner {
     padding: 12px 20px;
     margin: 25px auto; 
     border-radius: 14px; 
-    border: 2px dashed var(--primary-color); 
-    background-color: rgba(217, 141, 177, 0.07); 
+    border: 1px dashed var(--primary-brown); 
+    background-color: var(--bg-cream); 
     max-width: 450px; 
     text-align: center;
     font-size: 16px;
     font-weight: 500;
-    color: var(--text-color);
+    color: var(--text-dark);
 }
 
 .promo-banner strong {
-    color: var(--primary-color); 
+    color: var(--primary-brown); 
     font-weight: 700; 
-}  
+}
 
 
 /* ===================================
@@ -770,34 +849,66 @@ margin-bottom: 5px;
    =================================== */
 /* SOBRE MIM COR */
 .about-preview-section {
-    background-color: #fff; /* Fundo branco para contrastar */
-    padding: 60px 20px;
+    background-color: var(--bg-cream); /* Fundo Creme harmonizando com o Hero */
+    padding: 80px 20px 100px 20px; /* Bastante respiro */
     text-align: center;
+    position: relative;
 }
 
+/* Tratamento de "Joia" para a foto */
 .about-preview-pic {
-    width: 150px;
-    height: 150px;
+    width: 180px;
+    height: 180px;
     border-radius: 50%;
     object-fit: cover;
-    border: 5px solid var(--primary-color);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
+    
+    /* O Segredo do Luxo: Borda dupla */
+   border: 4px solid #2c1e16; /* Borda interna cor Café */
+    outline: 2px solid var(--accent-gold); /* Linha fina Dourada por fora */
+    outline-offset: 6px; /* Espacinho entre a foto e o dourado */
+    
+    box-shadow: 0 15px 35px rgba(44, 30, 22, 0.15); /* Sombra suave e difusa */
+    margin-bottom: 40px; /* Espaço generoso antes do título */
+    transition: transform 0.3s ease;
+}
+
+.about-preview-pic:hover {
+    transform: scale(1.03); /* Zoom leve e elegante */
+}
+
+/* Ajuste específico para o Título nesta seção clara */
+.about-preview-section .section-title {
+    color: #2c1e16; /* Café escuro para contraste máximo */
+    margin-bottom: 15px;
 }
 
 .about-preview-text {
-    font-size: 17px;
-    line-height: 1.7;
-    max-width: 600px; /* Limita a largura do texto para melhor leitura */
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 30px;
-    color: #555; /* Um cinza escuro suave */
+    /* A MUDANÇA PRINCIPAL: Usar a Cormorant Garamond */
+    font-family: 'Cormorant Garamond', serif; 
+    
+    /* Ajustes para ela ficar legível e luxuosa */
+    font-size: 22px; /* Essa fonte é delicada, então aumentamos o tamanho (era 17 ou 18px) */
+    font-weight: 1000; /* Um pouco mais de peso para não ficar apagada */
+    line-height: 1.3; /* Altura da linha mais compacta, estilo editorial */
+    letter-spacing: 0.5px; /* Leve espaçamento entre letras */
+    
+    /* Centralização e cor */
+    max-width: 650px; 
+    margin: 0 auto 30px auto;
+    color: #4A3228; /* Marrom café suave */
 }
 
-/* Ajuste para o botão dentro desta seção */
+/* Ajuste do botão para ele não ocupar a tela toda */
 .about-preview-section .btn {
-    width: auto; /* Para o botão não ocupar 100% da largura */
+    width: auto;
+    min-width: 200px; /* Garante uma largura mínima elegante */
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+.about-preview-section .btn:hover {
+    padding-right: 80px; /* Abre espaço extra para a estrela não atropelar */
+    padding-left: 30px;  /* Compensa para manter o texto centralizado */
 }
 
 
@@ -857,67 +968,165 @@ margin-bottom: 5px;
 
 
 /* ===================================
-   ESTILOS DA SEÇÃO DE DEPOIMENTOS
+   DEPOIMENTOS ESTILO GOOGLE (CREDIBILIDADE)
    =================================== */
 
 .section-divider {
     width: 80px;
     height: 3px;
-    background-color: var(--primary-color);
-    opacity: 0.5;
+    background-color: var(--primary-brown);
+    opacity: 0.3;
     border-radius: 5px;
-    margin: 80px auto 40px auto; /* Espaçamento: 80px acima, centralizado, 40px abaixo */
+    margin: 60px auto 40px auto;
 }
 
 .testimonial-grid {
-    display: flex; /* Muda de 'grid' para 'flex' */
-    overflow-x: auto; /* A MÁGICA: Permite rolar horizontalmente */
-    
-    /* "Trava" o card no lugar após o swipe */
-    scroll-snap-type: x mandatory; 
-    
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
     gap: 20px;
-    padding: 10px 20px; /* Adiciona um padding lateral */
-    margin: 30px -20px 50px -20px; /* Faz "sangrar" para as bordas */
-}
-
-.testimonial-card {
-    /* Define o tamanho de cada card */
-    flex: 0 0 85%; /* Cada card ocupa 85% da largura da tela */
+    padding: 20px 20px 40px 20px; /* Padding extra embaixo para sombra */
+    margin: 0 -20px; /* Sangria para celular */
     
-    /* Alinha o card "travado" no centro */
-    scroll-snap-align: center; 
-    
-    /* O resto do seu estilo (sombra, borda, etc) continua igual */
-    border-radius: 14px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-    overflow: hidden;
-    transition: transform 0.3s ease;
+    /* Esconde barra de rolagem */
+    scrollbar-width: none; 
+    -ms-overflow-style: none;
 }
 
-.testimonial-card:hover {
-    transform: none; 
-}
-
-.testimonial-card img {
-    display: block;
-    width: 100%;
-    height: auto;
-}
-
-/* (Opcional) Esconde a barra de rolagem horizontal */
 .testimonial-grid::-webkit-scrollbar {
     display: none;
 }
 
-@media (min-width: 768px) {
-    .testimonial-grid {
-        grid-template-columns: 1fr 1fr;
-    }
+/* O CARD DO GOOGLE */
+.google-card {
+    flex: 0 0 300px; /* Tamanho fixo ideal para leitura */
+    scroll-snap-align: center;
+    
+    background-color: #fff;
+    border-radius: 20px;
+    padding: 25px;
+    
+    /* Sombra suave e elegante */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    border: 1px solid rgba(0,0,0,0.05);
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
 }
 
+/* Cabeçalho do Card (Foto + Nome + Google) */
+.review-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    position: relative;
+}
 
+.reviewer-photo {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 12px;
+}
 
+.reviewer-info h4 {
+    margin: 0;
+    font-family: var(--font-main);
+    font-size: 15px;
+    font-weight: 700;
+    color: #333;
+}
+
+.reviewer-info span {
+    font-size: 12px;
+    color: #777;
+}
+
+/* Ícone do Google no canto superior direito */
+.google-icon-img {
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+/* Estrelas */
+.stars {
+    color: #F4B400; /* O Amarelo Oficial do Google */
+    font-size: 14px;
+    margin-bottom: 12px;
+    letter-spacing: 1px;
+}
+
+/* Texto do Depoimento */
+.review-text {
+    font-family: var(--font-main);
+    font-size: 14px;
+    line-height: 1.6;
+    color: #555;
+    margin: 0;
+    
+    /* Limita a 4 linhas e põe ... se for muito grande */
+    display: -webkit-box;
+    line-clamp: 5;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.google-verify-btn {
+    /* Centralização na Tela */
+    display: flex; /* Mudamos de inline-flex para flex para aceitar margin auto melhor */
+    align-items: center;
+    justify-content: center;
+    
+    /* A REGRA DE OURO DA CENTRALIZAÇÃO: */
+    margin: 30px auto 0 auto; /* Topo 30, Laterais Auto (Centraliza), Base 0 */
+    
+    /* Cores e Estilo */
+    background-color: #2c1e16; 
+    color: #ffffff; 
+    
+    /* Ajuste Fino do Espaçamento (Visualmente equilibrado) */
+    padding: 14px 25px 14px 20px; /* Um pouco menos na esquerda pra compensar o peso da logo */
+    
+    border-radius: 50px;
+    width: fit-content; /* Garante que o botão tenha o tamanho do conteúdo */
+    max-width: 95%; /* Não deixa estourar a tela */
+    
+    white-space: nowrap; /* Não quebra linha */
+    
+    font-family: var(--font-main);
+    font-weight: 700; 
+    font-size: 14px; 
+    text-decoration: none;
+    letter-spacing: 0.5px;
+    
+    box-shadow: 0 8px 20px rgba(44, 30, 22, 0.25);
+    transition: all 0.3s ease;
+    border: 1px solid #2c1e16;
+}
+
+/* Configuração da Logo */
+.google-verify-btn img {
+    width: 26px; /* Tamanho ideal */
+    height: 26px;
+    margin-right: 12px; /* Espaço para o texto respirar */
+    object-fit: contain;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2)); 
+    flex-shrink: 0; 
+}
+
+/* Efeito Hover */
+.google-verify-btn:hover {
+    background-color: #4A3228; 
+    transform: translateY(-3px); 
+    box-shadow: 0 12px 25px rgba(44, 30, 22, 0.35);
+}
 
 
 /* ===================================
@@ -926,34 +1135,64 @@ margin-bottom: 5px;
 
 .filter-buttons {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* <-- A SOLUÇÃO: 2 colunas iguais */
-    gap: 12px; /* Um espaço um pouco maior entre eles */
-    margin-bottom: 30px;
+    grid-template-columns: 1fr 1fr; /* Duas colunas */
+    gap: 12px;
+    padding: 0 10px 40px 10px;
+    max-width: 500px;
+    margin: 0 auto;
 }
 
 .filter-btn {
-    padding: 12px 10px; /* Ajustei o padding para o texto respirar */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 14px 10px;
+    
     font-family: var(--font-main);
-    font-weight: bold;
-    font-size: 14px;
-    color: var(--primary-color);
-    background-color: transparent;
-    border: 2px solid var(--primary-color);
-    border-radius: 50px;
+    font-weight: 700;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    
+    /* ESTADO NORMAL: Transparente + Borda Café */
+    background-color: transparent; 
+    color: #4A3228;
+    border: 1px solid #4A3228; 
+    border-radius: 12px;
+    
     cursor: pointer;
-    transition: all 0.3s ease;
-    text-align: center; /* Garante que o texto fique no centro */
+    
+    /* TRANSIÇÃO RÁPIDA (0.1s) para não dar lag */
+    transition: all 0.1s ease-out; 
+    
+    /* Remove o delay de toque no celular */
+    touch-action: manipulation; 
+    -webkit-tap-highlight-color: transparent;
 }
 
-.filter-btn:hover {
-    background-color: rgba(217, 141, 177, 0.1);
+/* O botão "Todos" ocupa a linha inteira */
+.filter-btn[data-filter="todos"] {
+    grid-column: span 2; 
+    border-color: #E0C68E; /* Borda dourada sutil */
+    color: #6A4A3C;
 }
 
+/* ESTADO ATIVO (Selecionado): Dourado Sólido */
 .filter-btn.active {
-    background-color: var(--primary-color);
-    color: white;
+    background-color: #E0C68E !important; /* Força o Dourado */
+    color: #2c1e16 !important; /* Texto Café Escuro */
+    border-color: #E0C68E !important;
+    box-shadow: 0 4px 15px rgba(224, 198, 142, 0.4);
+    transform: translateY(-1px);
 }
 
+/* Hover (Apenas PC - No celular atrapalha) */
+@media (hover: hover) {
+    .filter-btn:hover {
+        background-color: rgba(74, 50, 40, 0.05);
+    }
+}
 
 
 
@@ -1011,8 +1250,123 @@ margin-bottom: 5px;
     font-size: 14px;
     font-style: italic; /* Deixa com um ar de "dica" */
     color: #c097aa; /* Um cinza sutil que não chama mais atenção que o título */
-    margin-top: -15px; /* Puxa para mais perto do título */
     margin-bottom: 30px; /* Dá espaço antes do carrossel começar */
     position: relative;
     right: 12px; 
+}
+
+
+
+.info-bottom-wave {
+    position: absolute;
+    bottom: -1px; /* Seu ajuste que funcionou */
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+    /* Removi o transform: scaleX(-1); para ela virar o lado */
+}
+
+.info-bottom-wave svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px); /* Garante que preencha a largura */
+    height: 70px; 
+}
+
+/* O SEGREDO: Pintar da cor da PRÓXIMA seção (Creme) */
+.info-bottom-wave .shape-fill {
+    fill: var(--bg-cream); 
+}
+
+
+/* Container para alinhar a dica e o indicador */
+.swipe-hint-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Indicador de Arraste (Seta Dupla Animada) */
+.drag-indicator {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+    color: var(--primary-brown); /* Cor da marca */
+    opacity: 1;
+    margin-top: 5px;
+    animation: pulse-right 2s infinite ease-in-out;
+}
+
+.drag-indicator i {
+    font-size: 10px;
+}
+
+@keyframes pulse-right {
+    0%, 100% {
+        transform: translateX(0);
+        opacity: 0.7;
+    }
+    50% {
+        transform: translateX(5px); /* Move levemente para a direita */
+        opacity: 1;
+    }
+}
+
+/* Esconde o indicador em telas grandes onde não precisa arrastar tanto */
+@media (min-width: 768px) {
+    .drag-indicator {
+        display: none;
+    }
+}
+
+
+.reviews-header-container {
+    text-align: center; /* Centraliza tudo o que estiver dentro */
+    margin-bottom: 30px;
+    padding: 0 15px; /* Evita que o texto encoste na borda da tela */
+}
+
+/* Ajuste fino para o título não ficar colado */
+.reviews-header-container .section-title {
+    margin-bottom: 10px;
+}
+
+.trust-badges {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+/* Indicador de Arraste (Setinha Dourada Pulsante) */
+.drag-indicator {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--accent-gold); /* Dourado da marca */
+    margin-top: 8px;
+    opacity: 0.8;
+    animation: slideRight 1.5s infinite ease-in-out;
+}
+
+.drag-indicator i {
+    font-size: 10px;
+}
+
+/* Animação da setinha movendo */
+@keyframes slideRight {
+    0%, 100% { transform: translateX(0); opacity: 0.6; }
+    50% { transform: translateX(5px); opacity: 1; }
+}
+
+/* Esconde a dica de arrastar no PC (pois lá tem scrollbar ou mouse) */
+@media (min-width: 768px) {
+    .drag-indicator {
+        display: none;
+    }
 }
