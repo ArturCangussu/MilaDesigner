@@ -180,36 +180,64 @@ function gtag_report_conversion(url) {
 </button>
 
 <div id="agendamento-modal" class="modal-overlay">
-    <div class="modal-content" data-aos="zoom-in" data-aos-duration="400">
-        <span class="close-button">&times;</span>
-        <h2 class="section-title">✦ Agendamento Rápido ✦</h2>
-        <p class="modal-subtitle">Preencha os dados abaixo para agilizar seu atendimento.</p>
+    <div class="modal-card">
+        <button id="theme-toggle" class="theme-toggle-btn" aria-label="Alternar Tema">
+        <i class="fas fa-moon"></i>
+    </button>
+    <button class="close-button" aria-label="Fechar">
+        <i class="fas fa-times"></i>
+    </button>
+
+
+        <div class="modal-header">
+            <div class="header-decoration">✦</div>
+            <h2 class="modal-title">Agende seu Momento</h2>
+            <p class="modal-subtitle">Preencha para finalizar via WhatsApp</p>
+        </div>
 
         <form id="agendamento-form">
-            <div class="form-group">
-                <label for="nome">Seu Nome</label>
-                <input type="text" id="nome" name="nome" placeholder="Digite seu nome" required>
+            <div class="luxury-input-group">
+                <input type="text" id="nome" name="nome" class="luxury-input" placeholder=" " required>
+                <label for="nome" class="luxury-label">Seu Nome</label>
+                <i class="far fa-user input-icon-right"></i>
             </div>
 
-            <div class="form-group">
-                <label for="procedimento">Procedimento Desejado</label>
-                <select id="procedimento" name="procedimento" required>
-                    <option value="" disabled selected>Selecione um serviço...</option>
-                    <option value="Design Personalizado">Design Personalizado (R$30,00)</option>
+            <div class="luxury-input-group">
+                <select id="procedimento" name="procedimento" class="luxury-input" required>
+                    <option value="" disabled selected></option> <option value="Design Personalizado">Design Personalizado (R$30,00)</option>
                     <option value="Design com Henna">Design com Henna (R$40,00)</option>
                     <option value="Brow Lamination">Brow Lamination (R$100,00)</option>
                     <option value="Lash Lifting">Lash Lifting (R$100,00)</option>
                     <option value="Nutrigloss">NutriGloss (R$80,00)</option>
-                    </select>
+                    <option value="Nutrigloss Color">NutriGloss Color (R$90,00)</option>
+                </select>
+                <label for="procedimento" class="luxury-label">Procedimento de Interesse</label>
+                <i class="fas fa-chevron-down input-icon-right select-arrow"></i>
             </div>
 
-            <div class="form-group">
-                <label for="disponibilidade">Melhor Dia e Horário</label>
-                <input type="text" id="disponibilidade" name="disponibilidade" placeholder="Ex: Quarta à tarde, ou Sábado de manhã">
+            <div class="gold-upsell-wrapper">
+                <input type="checkbox" id="adicional-buco" class="hidden-checkbox">
+                <label for="adicional-buco" class="gold-upsell-card">
+                    <div class="upsell-content">
+                        <span class="upsell-tag">Oferta Especial</span>
+                        <span class="upsell-main-text">Adicionar Epilação de Buço?</span>
+                        <span class="upsell-price">+ R$ 15,00</span>
+                    </div>
+                    <div class="upsell-check-circle">
+                        <i class="fas fa-check"></i>
+                    </div>
+                </label>
             </div>
 
-            <button type="submit" class="btn btn-primary btn-submit" >
-                <i class="fab fa-whatsapp"></i>Confirmar Agendamento
+            <div class="luxury-input-group">
+                <input type="text" id="disponibilidade" name="disponibilidade" class="luxury-input" placeholder=" " required>
+                <label for="disponibilidade" class="luxury-label">Preferência de Dia/Horário</label>
+                <i class="far fa-calendar input-icon-right"></i>
+            </div>
+
+            <button type="submit" class="btn-submit-luxury">
+                <span>Confirmar Agendamento</span>
+                <i class="fab fa-whatsapp"></i>
             </button>
         </form>
     </div>
@@ -224,6 +252,27 @@ const modal = document.getElementById('agendamento-modal');
 const openModalButtons = document.querySelectorAll('.open-modal-button');
 const closeModalButton = document.querySelector('.close-button');
 const agendamentoForm = document.getElementById('agendamento-form');
+
+// --- LÓGICA DO MODO DARK (ECLIPSE) ---
+const themeToggleBtn = document.getElementById('theme-toggle');
+const modalCard = document.querySelector('.modal-card');
+const themeIcon = themeToggleBtn.querySelector('i');
+
+themeToggleBtn.addEventListener('click', (e) => {
+    e.preventDefault(); // Evita reload
+    
+    // Troca a classe
+    modalCard.classList.toggle('dark-mode');
+    
+    // Troca o ícone (Lua <-> Sol)
+    if (modalCard.classList.contains('dark-mode')) {
+        themeIcon.classList.remove('fa-moon');
+        themeIcon.classList.add('fa-sun'); // Vira Sol no modo escuro
+    } else {
+        themeIcon.classList.remove('fa-sun');
+        themeIcon.classList.add('fa-moon'); // Vira Lua no modo claro
+    }
+});
 
 // Função para abrir o modal
 const openModal = () => {
@@ -245,43 +294,65 @@ openModalButtons.forEach(button => {
 // Eventos para fechar o modal
 closeModalButton.addEventListener('click', closeModal);
 modal.addEventListener('click', (event) => {
-    // Fecha o modal apenas se o clique for no fundo (overlay)
     if (event.target === modal) {
         closeModal();
     }
 });
 
-// Lógica do envio do formulário
+// =====================================
+// ENVIO DO FORMULÁRIO (CORRIGIDO)
+// =====================================
 agendamentoForm.addEventListener('submit', (event) => {
-    event.preventDefault(); // Impede o envio padrão do formulário
+    event.preventDefault(); 
 
-    // Coleta os dados dos campos
     const nome = document.getElementById('nome').value;
-    const procedimento = document.getElementById('procedimento').value;
+    const procedimentoSelect = document.getElementById('procedimento');
+    const procedimentoNome = procedimentoSelect.value;
     const disponibilidade = document.getElementById('disponibilidade').value;
     
-    // Seu número de WhatsApp
+    // VERIFICA SE O BUÇO ESTÁ MARCADO (Usei try/catch pra evitar erro se o elemento não existir)
+    let temBuco = false;
+    const bucoElement = document.getElementById('adicional-buco');
+    if (bucoElement) {
+        temBuco = bucoElement.checked;
+    }
+    
     const seuNumero = '5533984255696';
-
-    // Monta a mensagem personalizada
-    const mensagem = `Olá! Gostaria de agendar um horário.\n\n*Nome:* ${nome}\n*Procedimento:* ${procedimento}\n*Disponibilidade:* ${disponibilidade}`;
-
-    // Codifica a mensagem para a URL
+    
+    // Monta a mensagem base
+    let mensagem = `Olá! Gostaria de agendar um horário.\n\n`;
+    mensagem += `*Nome:* ${nome}\n`;
+    mensagem += `*Procedimento:* ${procedimentoNome}\n`;
+    
+    // SE MARCOU BUÇO, ADICIONA NA MENSAGEM COM DESTAQUE
+    if (temBuco) {
+        mensagem += `*+ Adicional:* Epilação de Buço (R$ 15,00) ✨\n`;
+    }
+    
+    mensagem += `*Disponibilidade:* ${disponibilidade}`;
+    
     const mensagemCodificada = encodeURIComponent(mensagem);
+    const whatsappURL = `https://wa.me/${seuNumero}?text=${mensagemCodificada}`;
 
-    // Cria a URL do WhatsApp
-const whatsappURL = `https://wa.me/${seuNumero}?text=${mensagemCodificada}`;
+    // 1. RASTREIA FACEBOOK (Se existir, rastreia e continua)
+    if (typeof fbq === 'function') {
+        fbq('track', 'Lead');
+    }
 
-
-gtag_report_conversion(whatsappURL); 
-fbq('track', 'Lead');
-
+    // 2. REDIRECIONAMENTO INTELIGENTE
+    // Tenta usar a função do Google Ads (que tem o redirect embutido no callback)
+    if (typeof gtag_report_conversion === 'function') {
+        // O Google vai registrar a conversão e DEPOIS redirecionar
+        gtag_report_conversion(whatsappURL);
+    } else {
+        // Se o Google falhar (bloqueador de anúncios), redireciona na marra
+        window.location = whatsappURL;
+    }
     
     closeModal();
     agendamentoForm.reset();
+    if(bucoElement) bucoElement.checked = false;
 });
-
-
 </script>
 
 <script>
