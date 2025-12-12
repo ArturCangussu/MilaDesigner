@@ -832,6 +832,10 @@ body.modal-open {
     outline: none;
     transition: all 0.3s ease;
     box-sizing: border-box;
+    
+    /* === FIX: ESTILO DE SELEÇÃO NO MODO LIGHT === */
+    /* Isso força o seletor (bolinha) a ser dourado/marrom */
+    accent-color: var(--primary-brown); 
 }
 
 .luxury-label {
@@ -871,7 +875,29 @@ body.modal-open {
     padding: 0 5px; font-weight: 600;
 }
 
-select.luxury-input { appearance: none; cursor: pointer; }
+select.luxury-input { 
+    appearance: none; 
+    cursor: pointer; 
+    /* Adiciona a fonte chique aqui, para o texto do campo aparecer bonito */
+    font-family: 'Playfair Display', serif !important;
+    font-weight: 500;
+    color: #3E2723;
+}
+
+/* Obs: O estilo do option varia muito entre navegadores, mas tentamos forçar o máximo */
+.luxury-input option {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 500;
+    background-color: #FFF; /* Fundo branco para opções Light */
+    color: #3E2723;
+}
+
+.luxury-input option:checked {
+    /* Destaque para a opção selecionada - Modo Light */
+    background-color: #F2F0E9;
+    color: var(--accent-gold);
+}
 
 /* 6. Upsell Base */
 .gold-upsell-wrapper { margin-bottom: 30px; }
@@ -958,16 +984,20 @@ select.luxury-input { appearance: none; cursor: pointer; }
     background: #2F221E; 
     border-color: #4A3228;
     color: #F2F0E9;
-    
-    /* ADICIONE O SEGREDO DO RADIO BUTTON CUSTOMIZADO AQUI */
+    /* FIX: Force o seletor a ser DOURADO no Dark Mode */
     accent-color: var(--accent-gold); 
-    /* Isso muda a cor da bolinha do radio button no Chrome/Firefox */
-    
-    /* Corrige o padding vertical para compensar a seleção */
-    padding-top: 10px;
-    padding-bottom: 10px;
 }
 
+.modal-card.dark-mode .luxury-input option {
+    background-color: #2F221E; /* Fundo escuro para opções Dark */
+    color: #D7C0A9;
+}
+
+.modal-card.dark-mode .luxury-input option:checked {
+    /* Destaque para a opção selecionada - Modo Dark */
+    background-color: #2c1e16;
+    color: var(--accent-gold);
+}
 
 
 .modal-card.dark-mode select.luxury-input option {
@@ -2105,3 +2135,5 @@ html, body {
     animation: spinSlowFix 8s linear infinite !important; /* Força o giro */
     transform-origin: center center !important; /* Garante que o eixo seja o meio */
 }
+
+
