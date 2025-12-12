@@ -1919,8 +1919,11 @@ select.luxury-input {
 }
 
 .signature-font {
-    font-family: 'Monsieur La Doulaise', cursive;
-    font-size: 55px;
+    /* Fonte nova: Mais fina e fluida */
+    font-family: 'Mrs Saint Delafield', cursive;
+    
+    /* Mantém o tamanho grande e a cor para destaque */
+    font-size: 55px; 
     color: #2c1e16;
     line-height: 0.8;
 }
