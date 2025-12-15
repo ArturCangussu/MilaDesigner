@@ -1490,7 +1490,7 @@ select.luxury-input {
     /* ESTADO NORMAL: Transparente + Borda Café */
     background-color: transparent; 
     color: #4A3228;
-    border: 1px solid #4A3228; 
+    border: 2px solid var(--primary-brown);
     border-radius: 12px;
     
     cursor: pointer;
@@ -1943,7 +1943,7 @@ select.luxury-input {
     .cta-about { width: 100% !important; }
 }
 
-html, body {
+body {
     width: 100%;
     max-width: 100vw;
     overflow-x: hidden !important; /* Força o corte lateral */

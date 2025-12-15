@@ -231,19 +231,25 @@
             once: true,
         });
 
-        // 2. LÓGICA DO BOTÃO FLUTUANTE
-        if (window.matchMedia("(max-width: 767px)").matches) {
-            const fabButton = document.getElementById('fab-button');
-            const scrollThreshold = 200;
+if (window.matchMedia("(max-width: 767px)").matches) {
+    const fabButton = document.getElementById('fab-button');
+    let ticking = false; // Variável de controle
 
-            window.addEventListener('scroll', function() {
-                if (window.scrollY > scrollThreshold) {
+    window.addEventListener('scroll', function() {
+        if (!ticking) {
+            window.requestAnimationFrame(function() {
+                // O navegador só executa isso quando tiver fôlego
+                if (window.scrollY > 200) {
                     fabButton.classList.add('visible');
                 } else {
                     fabButton.classList.remove('visible');
                 }
+                ticking = false;
             });
+            ticking = true;
         }
+    });
+}
 
         // 3. LÓGICA DO MODAL
         const modal = document.getElementById('agendamento-modal');
