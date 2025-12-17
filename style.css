@@ -2157,3 +2157,11 @@ body {
 .foco-dir   { object-position: center right !important; }
 .foco-esq   { object-position: center left !important; }
 
+.ajuste-contain {
+    object-fit: contain !important; /* Mostra a foto inteira */
+    background-color: #f2f0e9; /* Preenche a sobra com a cor creme do site, em vez de branco */
+}
+
+.card-quadrado {
+    aspect-ratio: 1 / 1 !important;
+}
