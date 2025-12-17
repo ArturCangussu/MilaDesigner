@@ -182,19 +182,54 @@
                 <i class="far fa-user input-icon-right"></i>
             </div>
 
-            <div class="luxury-input-group">
-                <select id="procedimento" name="procedimento" class="luxury-input" required>
-                    <option value="" disabled selected></option> <option value="Design Personalizado">Design Personalizado (R$30,00)</option>
-                    <option value="Design com Henna">Design com Henna (R$40,00)</option>
-                    <option value="Brow Lamination">Brow Lamination (R$100,00)</option>
-                    <option value="Brow Lamination C/ Henna">Brow Lamination C/ Henna (R$130,00)</option> 
-                    <option value="Lash Lifting">Lash Lifting (R$100,00)</option>
-                    <option value="Nutrigloss">NutriGloss (R$80,00)</option>
-                    <option value="Nutrigloss Color">NutriGloss Color (R$100,00)</option>
-                </select>
-                <label for="procedimento" class="luxury-label">Procedimento de Interesse</label>
-                <i class="fas fa-chevron-down input-icon-right select-arrow"></i>
-            </div>
+<div class="custom-multiselect" id="multiselect-container">
+    <div class="fake-label">Procedimentos de Interesse</div>
+    
+    <div class="select-trigger" onclick="toggleDropdown()">
+        <span class="trigger-text" id="selected-summary">Selecione um ou mais...</span>
+        <i class="fas fa-chevron-down" style="color: #D7C0A9;"></i>
+    </div>
+
+    <div class="options-dropdown">
+        
+        <label class="checkbox-option">
+            <input type="checkbox" name="procedimentos" value="Design Personalizado" data-preco="30.00" onchange="updateSummary()">
+            <span>Design Personalizado (R$ 30,00)</span>
+        </label>
+
+        <label class="checkbox-option">
+            <input type="checkbox" name="procedimentos" value="Design com Henna" data-preco="40.00" onchange="updateSummary()">
+            <span>Design com Henna (R$ 40,00)</span>
+        </label>
+
+        <label class="checkbox-option">
+            <input type="checkbox" name="procedimentos" value="Brow Lamination" data-preco="100.00" onchange="updateSummary()">
+            <span>Brow Lamination (R$ 100,00)</span>
+        </label>
+
+                <label class="checkbox-option">
+            <input type="checkbox" name="procedimentos" value="Brow Lamination C/ Henna" data-preco="130.00" onchange="updateSummary()">
+            <span>Brow Lamination C/ Henna (R$ 130,00)</span>
+        </label>
+
+        <label class="checkbox-option">
+            <input type="checkbox" name="procedimentos" value="Lash Lifting" data-preco="100.00" onchange="updateSummary()">
+            <span>Lash Lifting (R$ 100,00)</span>
+        </label>
+
+        <label class="checkbox-option">
+            <input type="checkbox" name="procedimentos" value="NutriGloss" data-preco="80.00" onchange="updateSummary()">
+            <span>NutriGloss (R$ 80,00)</span>
+        </label>
+
+        <label class="checkbox-option">
+            <input type="checkbox" name="procedimentos" value="NutriGloss Color" data-preco="100.00" onchange="updateSummary()">
+            <span>NutriGloss Color (R$ 100,00)</span>
+        </label>
+
+        <button type="button" class="btn-confirm-selection" onclick="toggleDropdown()">Confirmar</button>
+    </div>
+</div>
 
             <div class="gold-upsell-wrapper">
                 <input type="checkbox" id="adicional-buco" class="hidden-checkbox">
@@ -233,16 +268,35 @@
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> 
 <script>
-    AOS.init({ duration: 1000, once: true });
+    // 1. INICIA ANIMAÇÕES
+    AOS.init({
+        duration: 800,
+        once: true,
+    });
 
-    // JS do botão flutuante e modal
+    // 2. LÓGICA OTIMIZADA DO BOTÃO FLUTUANTE (Para não travar a rolagem)
     if (window.matchMedia("(max-width: 767px)").matches) {
         const fabButton = document.getElementById('fab-button');
+        let ticking = false; // Variável de controle para performance
+
         window.addEventListener('scroll', function() {
-            if (window.scrollY > 200) fabButton.classList.add('visible');
-            else fabButton.classList.remove('visible');
+            if (!ticking) {
+                window.requestAnimationFrame(function() {
+                    if (window.scrollY > 200) {
+                        fabButton.classList.add('visible');
+                    } else {
+                        fabButton.classList.remove('visible');
+                    }
+                    ticking = false;
+                });
+                ticking = true;
+            }
         });
     }
+
+    // =====================================
+    // 3. LÓGICA DO MODAL & FORMULÁRIO NOVO
+    // =====================================
 
     const modal = document.getElementById('agendamento-modal');
     const openModalButtons = document.querySelectorAll('.open-modal-button');
@@ -270,53 +324,133 @@
         }
     });
 
-    const openModal = () => { modal.style.display = 'flex'; document.body.classList.add('modal-open'); }
-    const closeModal = () => { modal.style.display = 'none'; document.body.classList.remove('modal-open'); }
+    // Função para abrir o modal
+    const openModal = () => {
+        modal.style.display = 'flex';
+        document.body.classList.add('modal-open');
+    }
 
-    openModalButtons.forEach(button => button.addEventListener('click', openModal));
+    // Função para fechar o modal
+    const closeModal = () => {
+        modal.style.display = 'none';
+        document.body.classList.remove('modal-open');
+    }
+
+    // Adiciona o evento de clique a todos os botões de agendamento
+    openModalButtons.forEach(button => {
+        button.addEventListener('click', openModal);
+    });
+
+    // Eventos para fechar o modal
     closeModalButton.addEventListener('click', closeModal);
-    modal.addEventListener('click', (event) => { if (event.target === modal) closeModal(); });
+    modal.addEventListener('click', (event) => {
+        if (event.target === modal) {
+            closeModal();
+        }
+    });
 
-    // --- LÓGICA DE ENVIO DO WHATSAPP (CORRIGIDA) ---
+
+    // --- LÓGICA DO DROPDOWN MULTI-SELEÇÃO ---
+
+    // Abre/Fecha o dropdown
+    function toggleDropdown() {
+        const container = document.getElementById('multiselect-container');
+        container.classList.toggle('active');
+    }
+
+    // Atualiza o texto do resumo (ex: "Design, Brow Lamination...")
+    function updateSummary() {
+        const checkboxes = document.querySelectorAll('input[name="procedimentos"]:checked');
+        const summaryText = document.getElementById('selected-summary');
+        
+        if (checkboxes.length === 0) {
+            summaryText.textContent = "Selecione um ou mais...";
+            summaryText.classList.remove('has-selection');
+        } else {
+            // Pega só os nomes e junta com vírgula (quebra linha visualmente pelo CSS)
+            let nomes = Array.from(checkboxes).map(cb => cb.value);
+            summaryText.textContent = nomes.join(', '); 
+            summaryText.classList.add('has-selection');
+        }
+    }
+
+    // Fecha o dropdown se clicar fora dele
+    document.addEventListener('click', function(e) {
+        const container = document.getElementById('multiselect-container');
+        // Se o clique NÃO foi dentro do container e o container está aberto
+        if (!container.contains(e.target) && container.classList.contains('active')) {
+            container.classList.remove('active');
+        }
+    });
+
+    // =====================================
+    // ENVIO DO FORMULÁRIO (CORRIGIDO PARA MULTI-SELEÇÃO)
+    // =====================================
     agendamentoForm.addEventListener('submit', (event) => {
         event.preventDefault(); 
-        
+
         const nome = document.getElementById('nome').value;
-        const procedimento = document.getElementById('procedimento').value;
         const disp = document.getElementById('disponibilidade').value;
         const temBuco = document.getElementById('adicional-buco').checked;
         const seuNumero = '5533984255696';
+
+        // 1. Captura todos os checkboxes marcados na lista nova
+        const checkboxes = document.querySelectorAll('input[name="procedimentos"]:checked');
         
-        // 1. Monta a mensagem base
-        let msg = `Olá! Gostaria de agendar um horário.\n\n*Nome:* ${nome}\n*Procedimento:* ${procedimento}\n`;
+        // Validação: Se não marcou nada, avisa e para.
+        if (checkboxes.length === 0) {
+            alert("Por favor, selecione pelo menos um procedimento.");
+            return;
+        }
 
-        // 2. Adiciona o Buço se tiver
-        if (temBuco) msg += `*+ Adicional:* Epilação de Buço (R$ 15,00) ✨\n`;
+        // 2. Monta a lista de nomes e calcula o total
+        let listaProcedimentos = [];
+        let total = 0;
 
-        // 3. Adiciona a Disponibilidade
-        msg += `*Disponibilidade:* ${disp}\n\n`; 
+        checkboxes.forEach((box) => {
+            listaProcedimentos.push("• " + box.value); // Adiciona na lista com uma bolinha
+            total += parseFloat(box.getAttribute('data-preco')); // Soma o preço
+        });
 
-        // 4. ADICIONA O TERMO DE CIÊNCIA
-        msg += `_Estou ciente da política de cancelamento de 24h._ ✅`; 
+        // 3. Adiciona o Buço na conta se tiver
+        if (temBuco) {
+            listaProcedimentos.push("*+ Adicional: Epilação de Buço*");
+            total += 15.00;
+        }
+        
+        // Monta a mensagem base
+        let mensagem = `✨ Olá! Gostaria de agendar um horário.\n\n`;
+        mensagem += `*Nome:* ${nome}\n\n`;
+        mensagem += `*Procedimentos:*\n${listaProcedimentos.join('\n')}\n\n`; // Lista um embaixo do outro
+        mensagem += `*Valor Total:* R$ ${total.toFixed(2).replace('.', ',')}\n\n`; // Total calculado
+        
+        mensagem += `*Disponibilidade:* ${disp}\n\n`; 
 
-        // 5. Gera o link e envia
-        const url = `https://wa.me/${seuNumero}?text=${encodeURIComponent(msg)}`;
+        mensagem += `_Estou ciente da política de cancelamento de 24h._ `;
+        const mensagemCodificada = encodeURIComponent(mensagem);
+        const whatsappURL = `https://wa.me/${seuNumero}?text=${mensagemCodificada}`;
 
-        // Rastreia Pixel do Facebook
+        // 1. RASTREIA FACEBOOK (Se existir, rastreia e continua)
         if (typeof fbq === 'function') {
             fbq('track', 'Lead');
         }
 
-        // Tenta converter no Google Ads ou Redireciona
+        // 2. REDIRECIONAMENTO INTELIGENTE
+        // Tenta usar a função do Google Ads (que tem o redirect embutido no callback)
         if (typeof gtag_report_conversion === 'function') {
-            gtag_report_conversion(url);
+            // O Google vai registrar a conversão e DEPOIS redirecionar
+            gtag_report_conversion(whatsappURL);
         } else {
-            window.location = url;
+            // Se o Google falhar (bloqueador de anúncios), redireciona na marra
+            window.location = whatsappURL;
         }
         
         closeModal();
         agendamentoForm.reset();
         document.getElementById('adicional-buco').checked = false;
+        // Limpa a seleção visual do dropdown
+        document.querySelectorAll('input[name="procedimentos"]').forEach(box => box.checked = false);
+        document.getElementById('selected-summary').textContent = "Selecione um ou mais...";
     });
     </script>
 </body>

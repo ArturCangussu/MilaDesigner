@@ -2,8 +2,7 @@
 <html lang="en">
 <head>
 
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-17560121118"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17560121118"></script>
 <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
@@ -11,10 +10,6 @@
 
     gtag('config', 'AW-17560121118');
 </script>
-
-    <!-- Event snippet for Reservar horário conversion page
-In your html page, add the snippet and call gtag_report_conversion when someone clicks on the chosen link or button. -->
-
 
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -42,7 +37,6 @@ In your html page, add the snippet and call gtag_report_conversion when someone 
 <meta name="description" content="Especialista em design de sobrancelhas em Teófilo Otoni. Agende seu horário pelo WhatsApp e transforme seu olhar. Veja o portfólio e os serviços.">
 
 
-<!-- Meta Pixel Code -->
 <script>
 !function(f,b,e,v,n,t,s)
 {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -58,9 +52,6 @@ fbq('track', 'PageView');
 <noscript><img height="1" width="1" style="display:none"
 src="https://www.facebook.com/tr?id=2537988803247753&ev=PageView&noscript=1"
 /></noscript>
-<!-- End Meta Pixel Code -->
-
-
 <script>
 function gtag_report_conversion(url) {
   var callback = function () {
@@ -94,16 +85,11 @@ function gtag_report_conversion(url) {
             ></path>
            </svg>
         </div>
-<div class="container hero-content">  
+<div class="container hero-content">  
     <img src="images/mila_beauty2.png" alt="Logo" class="logo" data-aos="zoom-in-down" />
     <h1 class="main-title" data-aos="fade-up" data-aos-delay="200">
     <span class="star-detail">✦</span> Mila Beauty <span class="star-detail">✦</span>
 </h1>
-<!--
-    <div class="promo-banner" data-aos="fade-up" data-aos-delay="300">
-        💖 Primeira vez aqui? <strong>Ganhe 20% de desconto + Brinde surpresa</strong> no seu atendimento!
-    </div>
-    -->
 <div class="button-group" data-aos="fade-up" data-aos-delay="400">
     <button role="button" class="btn btn-primary open-modal-button">
         <i class="fab fa-whatsapp"></i>Agendamento
@@ -202,19 +188,54 @@ function gtag_report_conversion(url) {
                 <i class="far fa-user input-icon-right"></i>
             </div>
 
-            <div class="luxury-input-group">
-                <select id="procedimento" name="procedimento" class="luxury-input" required>
-                    <option value="" disabled selected></option> <option value="Design Personalizado">Design Personalizado (R$30,00)</option>
-                    <option value="Design com Henna">Design com Henna (R$40,00)</option>
-                    <option value="Brow Lamination">Brow Lamination (R$100,00)</option>
-                    <option value="Brow Lamination C/ Henna">Brow Lamination C/ Henna (R$130,00)</option> 
-                    <option value="Lash Lifting">Lash Lifting (R$100,00)</option>
-                    <option value="Nutrigloss">NutriGloss (R$80,00)</option>
-                    <option value="Nutrigloss Color">NutriGloss Color (R$100,00)</option>                   
-                </select>
-                <label for="procedimento" class="luxury-label">Procedimento de Interesse</label>
-                <i class="fas fa-chevron-down input-icon-right select-arrow"></i>
-            </div>
+<div class="custom-multiselect" id="multiselect-container">
+    <div class="fake-label">Procedimentos de Interesse</div>
+    
+    <div class="select-trigger" onclick="toggleDropdown()">
+        <span class="trigger-text" id="selected-summary">Selecione um ou mais...</span>
+        <i class="fas fa-chevron-down" style="color: #D7C0A9;"></i>
+    </div>
+
+    <div class="options-dropdown">
+        
+        <label class="checkbox-option">
+            <input type="checkbox" name="procedimentos" value="Design Personalizado" data-preco="30.00" onchange="updateSummary()">
+            <span>Design Personalizado (R$ 30,00)</span>
+        </label>
+
+        <label class="checkbox-option">
+            <input type="checkbox" name="procedimentos" value="Design com Henna" data-preco="40.00" onchange="updateSummary()">
+            <span>Design com Henna (R$ 40,00)</span>
+        </label>
+
+        <label class="checkbox-option">
+            <input type="checkbox" name="procedimentos" value="Brow Lamination" data-preco="100.00" onchange="updateSummary()">
+            <span>Brow Lamination (R$ 100,00)</span>
+        </label>
+
+                <label class="checkbox-option">
+            <input type="checkbox" name="procedimentos" value="Brow Lamination C/ Henna" data-preco="130.00" onchange="updateSummary()">
+            <span>Brow Lamination C/ Henna (R$ 130,00)</span>
+        </label>
+
+        <label class="checkbox-option">
+            <input type="checkbox" name="procedimentos" value="Lash Lifting" data-preco="100.00" onchange="updateSummary()">
+            <span>Lash Lifting (R$ 100,00)</span>
+        </label>
+
+        <label class="checkbox-option">
+            <input type="checkbox" name="procedimentos" value="NutriGloss" data-preco="80.00" onchange="updateSummary()">
+            <span>NutriGloss (R$ 80,00)</span>
+        </label>
+
+        <label class="checkbox-option">
+            <input type="checkbox" name="procedimentos" value="NutriGloss Color" data-preco="100.00" onchange="updateSummary()">
+            <span>NutriGloss Color (R$ 100,00)</span>
+        </label>
+
+        <button type="button" class="btn-confirm-selection" onclick="toggleDropdown()">Confirmar</button>
+    </div>
+</div>
 
             <div class="gold-upsell-wrapper">
                 <input type="checkbox" id="adicional-buco" class="hidden-checkbox">
@@ -307,39 +328,84 @@ modal.addEventListener('click', (event) => {
     }
 });
 
+
+// --- LÓGICA DO DROPDOWN MULTI-SELEÇÃO ---
+
+// Abre/Fecha o dropdown
+function toggleDropdown() {
+    const container = document.getElementById('multiselect-container');
+    container.classList.toggle('active');
+}
+
+// Atualiza o texto do resumo (ex: "Design, Brow Lamination...")
+function updateSummary() {
+    const checkboxes = document.querySelectorAll('input[name="procedimentos"]:checked');
+    const summaryText = document.getElementById('selected-summary');
+    
+    if (checkboxes.length === 0) {
+        summaryText.textContent = "Selecione um ou mais...";
+        summaryText.classList.remove('has-selection');
+    } else {
+        // Pega só os nomes (removendo o preço do texto do span se quiser, ou pegando o value)
+        let nomes = Array.from(checkboxes).map(cb => cb.value);
+        summaryText.textContent = nomes.join(', '); // Ex: "Design, Brow Lamination"
+        summaryText.classList.add('has-selection');
+    }
+}
+
+// Fecha o dropdown se clicar fora dele
+document.addEventListener('click', function(e) {
+    const container = document.getElementById('multiselect-container');
+    // Se o clique NÃO foi dentro do container e o container está aberto
+    if (!container.contains(e.target) && container.classList.contains('active')) {
+        container.classList.remove('active');
+    }
+});
+
 // =====================================
-// ENVIO DO FORMULÁRIO (CORRIGIDO)
+// ENVIO DO FORMULÁRIO (CORRIGIDO PARA MULTI-SELEÇÃO)
 // =====================================
 agendamentoForm.addEventListener('submit', (event) => {
     event.preventDefault(); 
 
     const nome = document.getElementById('nome').value;
-    const procedimentoSelect = document.getElementById('procedimento');
-    const procedimentoNome = procedimentoSelect.value;
-    const disponibilidade = document.getElementById('disponibilidade').value;
-    
-    // VERIFICA SE O BUÇO ESTÁ MARCADO (Usei try/catch pra evitar erro se o elemento não existir)
-    let temBuco = false;
-    const bucoElement = document.getElementById('adicional-buco');
-    if (bucoElement) {
-        temBuco = bucoElement.checked;
-    }
-    
+    const disp = document.getElementById('disponibilidade').value;
+    const temBuco = document.getElementById('adicional-buco').checked;
     const seuNumero = '5533984255696';
+
+    // 1. Captura todos os checkboxes marcados na lista nova
+    const checkboxes = document.querySelectorAll('input[name="procedimentos"]:checked');
+    
+    // Validação: Se não marcou nada, avisa e para.
+    if (checkboxes.length === 0) {
+        alert("Por favor, selecione pelo menos um procedimento.");
+        return;
+    }
+
+    // 2. Monta a lista de nomes e calcula o total
+    let listaProcedimentos = [];
+    let total = 0;
+
+    checkboxes.forEach((box) => {
+        listaProcedimentos.push("• " + box.value); // Adiciona na lista com uma bolinha
+        total += parseFloat(box.getAttribute('data-preco')); // Soma o preço
+    });
+
+    // 3. Adiciona o Buço na conta se tiver
+    if (temBuco) {
+        listaProcedimentos.push("*+ Adicional: Epilação de Buço*");
+        total += 15.00;
+    }
     
     // Monta a mensagem base
-    let mensagem = `Olá! Gostaria de agendar um horário.\n\n`;
-    mensagem += `*Nome:* ${nome}\n`;
-    mensagem += `*Procedimento:* ${procedimentoNome}\n`;
+    let mensagem = `✨ Olá! Gostaria de agendar um horário.\n\n`;
+    mensagem += `*Nome:* ${nome}\n\n`;
+    mensagem += `*Procedimentos:*\n${listaProcedimentos.join('\n')}\n\n`; // Lista um embaixo do outro
+    mensagem += `*Valor Total:* R$ ${total.toFixed(2).replace('.', ',')}\n\n`; // Total calculado
     
-    // SE MARCOU BUÇO, ADICIONA NA MENSAGEM COM DESTAQUE
-    if (temBuco) {
-        mensagem += `*+ Adicional:* Epilação de Buço (R$ 15,00) ✨\n`;
-    }
-    
-mensagem += `*Disponibilidade:* ${disponibilidade}\n\n`; 
+    mensagem += `*Disponibilidade:* ${disp}\n\n`; 
 
-mensagem += `_Estou ciente da política de cancelamento de 24h._ `;
+    mensagem += `_Estou ciente da política de cancelamento de 24h._ `;
     const mensagemCodificada = encodeURIComponent(mensagem);
     const whatsappURL = `https://wa.me/${seuNumero}?text=${mensagemCodificada}`;
 
@@ -360,7 +426,10 @@ mensagem += `_Estou ciente da política de cancelamento de 24h._ `;
     
     closeModal();
     agendamentoForm.reset();
-    if(bucoElement) bucoElement.checked = false;
+    document.getElementById('adicional-buco').checked = false;
+    // Limpa a seleção visual do dropdown
+    document.querySelectorAll('input[name="procedimentos"]').forEach(box => box.checked = false);
+    document.getElementById('selected-summary').textContent = "Selecione um ou mais...";
 });
 </script>
 
