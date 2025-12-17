@@ -235,6 +235,13 @@ function gtag_report_conversion(url) {
                 <i class="far fa-calendar input-icon-right"></i>
             </div>
 
+            <div class="terms-wrapper" style="margin-bottom: 25px; display: flex; align-items: flex-start; gap: 10px;">
+    <input type="checkbox" id="termos-uso" required style="margin-top: 5px; accent-color: var(--primary-brown);">
+    <label for="termos-uso" style="font-family: var(--font-main); font-size: 13px; color: #6A4A3C; line-height: 1.4;">
+        Estou ciente que cancelamentos devem ser feitos com <strong>24h de antecedência</strong>. O não comparecimento sem aviso prévio poderá impedir novos agendamentos.
+    </label>
+</div>
+
             <button type="submit" class="btn-submit-luxury">
                 <span>Confirmar Agendamento</span>
                 <i class="fab fa-whatsapp"></i>
@@ -329,8 +336,9 @@ agendamentoForm.addEventListener('submit', (event) => {
         mensagem += `*+ Adicional:* Epilação de Buço (R$ 15,00) ✨\n`;
     }
     
-    mensagem += `*Disponibilidade:* ${disponibilidade}`;
-    
+mensagem += `*Disponibilidade:* ${disponibilidade}\n\n`; 
+
+mensagem += `_Estou ciente da política de cancelamento de 24h._ `;
     const mensagemCodificada = encodeURIComponent(mensagem);
     const whatsappURL = `https://wa.me/${seuNumero}?text=${mensagemCodificada}`;
 
