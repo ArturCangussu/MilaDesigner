@@ -2139,4 +2139,21 @@ body {
     transform-origin: center center !important; /* Garante que o eixo seja o meio */
 }
 
+/* =========================================
+   AJUSTES FINOS DE FOTO (PORTFÓLIO)
+   ========================================= */
+
+/* AUMENTAR O ZOOM (Aproximar) */
+.zoom-110 { transform: scale(1.1); }  /* Aumenta 10% */
+.zoom-120 { transform: scale(1.2); }  /* Aumenta 20% */
+.zoom-130 { transform: scale(1.3); }  /* Aumenta 30% */
+
+
+
+/* AJUSTAR O ENQUADRAMENTO (Foco)
+   Use isso se a foto estiver cortando a testa ou o queixo */
+.foco-topo  { object-position: top center !important; }
+.foco-baixo { object-position: bottom center !important; }
+.foco-dir   { object-position: center right !important; }
+.foco-esq   { object-position: center left !important; }
 
