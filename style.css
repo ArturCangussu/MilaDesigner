@@ -2383,7 +2383,58 @@ body {
     }
 }
 
+/* --- ESTILO DO VOUCHER DE RESUMO (LINDÃO) --- */
+.summary-voucher {
+    background: #fff;
+    border: 2px solid var(--accent-gold);
+    border-radius: 20px;
+    padding: 35px 25px;
+    margin: 25px 0;
+    position: relative;
+    box-shadow: 0 15px 40px rgba(62, 39, 35, 0.08);
+    background-image: radial-gradient(var(--bg-cream) 1px, transparent 1px);
+    background-size: 20px 20px; /* Textura sutil de papel */
+}
 
+/* Efeito de picote lateral */
+.summary-voucher::before, .summary-voucher::after {
+    content: '';
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    background: var(--bg-cream);
+    border-radius: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+    border: 1px solid var(--accent-gold);
+}
+.summary-voucher::before { left: -13px; border-left: none; }
+.summary-voucher::after { right: -13px; border-right: none; }
+
+.summary-item {
+    margin-bottom: 20px;
+    border-bottom: 1px dashed rgba(224, 198, 142, 0.5);
+    padding-bottom: 15px;
+    text-align: center;
+}
+
+.summary-label {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    color: #8D6E63;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+    font-weight: 700;
+}
+
+.summary-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    color: #2c1e16;
+    font-style: italic;
+    display: block;
+}
 /* =========================================
    FIX: CORREÇÃO DO MODO DARK (CHECKLIST)
    ========================================= */

@@ -422,22 +422,22 @@ agendamentoForm.addEventListener('submit', (event) => {
         fbq('track', 'Lead');
     }
 
-    // 2. REDIRECIONAMENTO INTELIGENTE
-    // Tenta usar a função do Google Ads (que tem o redirect embutido no callback)
-    if (typeof gtag_report_conversion === 'function') {
-        // O Google vai registrar a conversão e DEPOIS redirecionar
-        gtag_report_conversion(whatsappURL);
-    } else {
-        // Se o Google falhar (bloqueador de anúncios), redireciona na marra
-        window.location = whatsappURL;
-    }
-    
-    closeModal();
-    agendamentoForm.reset();
-    document.getElementById('adicional-buco').checked = false;
-    // Limpa a seleção visual do dropdown
-    document.querySelectorAll('input[name="procedimentos"]').forEach(box => box.checked = false);
-    document.getElementById('selected-summary').textContent = "Selecione um ou mais...";
+// 1. SALVA OS DADOS (Instantâneo)
+    const dadosResumo = {
+        procedimentos: Array.from(checkboxes).map(cb => cb.value).join(', '),
+        total: `R$ ${total.toFixed(2).replace('.', ',')}`,
+        data: disp,
+        whatsappURL: whatsappURL
+    };
+    localStorage.setItem('ultimo_agendamento_mila', JSON.stringify(dadosResumo));
+
+    // 2. DISPARA O WHATSAPP (Aproveitando o clique do usuário para não ser bloqueado)
+    window.location.href = whatsappURL;
+
+    // 3. TROCA A PÁGINA DE FUNDO PARA O RESUMO (Com delay mínimo para o celular processar o Zap)
+    setTimeout(() => {
+        window.location.replace('resumo.html');
+    }, 400);
 });
 </script>
 
