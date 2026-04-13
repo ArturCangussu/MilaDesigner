@@ -298,7 +298,7 @@ font-family: 'Playfair Display', serif;
 
 /* Estilos para o mapa incorporado */
 .map-responsive {
-  width: 90%;             /* Faz o mapa ocupar toda a largura da coluna */
+  width: 100%;             /* Faz o mapa ocupar toda a largura da coluna */
   height: 250px;         
   border: none;            
   border-radius: 14px;     
