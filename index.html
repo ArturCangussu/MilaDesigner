@@ -431,13 +431,20 @@ agendamentoForm.addEventListener('submit', (event) => {
     };
     localStorage.setItem('ultimo_agendamento_mila', JSON.stringify(dadosResumo));
 
-    // 2. DISPARA O WHATSAPP (Aproveitando o clique do usuário para não ser bloqueado)
-    window.location.href = whatsappURL;
+    // 2. DISPARA O WHATSAPP via click em <a> real (mais confiável que window.location
+    //    em browsers in-app tipo Instagram/Facebook e celulares mais antigos)
+    const waLink = document.createElement('a');
+    waLink.href = whatsappURL;
+    waLink.rel = 'noopener';
+    document.body.appendChild(waLink);
+    waLink.click();
+    waLink.remove();
 
-    // 3. TROCA A PÁGINA DE FUNDO PARA O RESUMO (Com delay mínimo para o celular processar o Zap)
+    // 3. TROCA A PÁGINA DE FUNDO PARA O RESUMO — delay maior pra dar tempo do SO
+    //    fazer o hand-off do wa.me pro app antes da página trocar
     setTimeout(() => {
         window.location.replace('resumo.html');
-    }, 400);
+    }, 1500);
 });
 </script>
 
